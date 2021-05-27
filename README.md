@@ -1,4 +1,4 @@
-# Correspondence Analysis 
+# Free Correspondence Analysis Software
 # Made Easy for Everyone from any Disciplines
 
 ## Description
