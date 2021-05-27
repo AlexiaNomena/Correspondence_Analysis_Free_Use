@@ -49,26 +49,26 @@ Figures/ folder is the default location of figure outputs.
 Visualising the usual correspondence analysis results
 
 <p align="center">
-  <img src="Figures/CA/CA_text_Vb.png" width="700">
+  <img src="Figures/CA/CA_text_Vb.png" width="800">
 </p>
 
 ### Association clustermap
 Visualising the strenght of the association between the variables and identify similar clusters (similarity in the strenght of the associations)
 
 <p align="center">
-  <img src="Figures/CA/Cmap_Assoc.png" width="700">
+  <img src="Figures/CA/Cmap_Assoc.png" width="800">
 </p>
 
 ### Variable clustermap
 Identify similar clusters of variables (chi-square similarity)
  
 <p align="center">
-  <img src="Figures/CA/Cmap_text.png" width="700">
+  <img src="Figures/CA/Cmap_text.png" width="800">
 </p>
 
 
 <p align="center">
-  <img src="Figures/CA/Cmap_Vb.png" width="700">
+  <img src="Figures/CA/Cmap_Vb.png" width="800">
 </p>
 
 
