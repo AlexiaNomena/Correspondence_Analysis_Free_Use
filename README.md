@@ -1,5 +1,5 @@
 # Correspondence Analysis 
-# Made Easy for Everyone from any Discipline
+# Made Easy for Everyone from any Disciplines
 
 ## Description
 Perform standard correspondence analysis of two categorical variables (code module `ca.py` in the folder Methods/).
