@@ -53,7 +53,9 @@ Visualising the usual correspondence analysis results
 </p>
 
 ### Association clustermap
-Visualising the strenght of the association between the variables and identify similar clusters (similarity in the strenght of the associations)
+Visualising the strenght of the association between the variables 
+
+Identify similar clusters (similarity in the strenght of the associations)
 
 <p align="center">
   <img src="Figures/CA/Cmap_Assoc.png" width="800">
