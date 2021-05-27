@@ -44,7 +44,7 @@ Data/ can be used to include data.
 Figures/ folder is the default location of figure outputs.
 
 ## Sample Figures
-Click [here](https://github.com/AlexiaNomena/Correspondence_Analysis_Made_Easy/blob/main/Figures/CA/CA_text_Vb_F1_to_F5_all.pdf) for higher resolution
+Click [here](https://github.com/AlexiaNomena/Correspondence_Analysis_Made_Easy/blob/main/Figures/CA/CA_text_Vb_F1_to_F5_all.pdf) for a higher resolution
 
 ### Standard CA figure and a few statistics
 Visualising the usual correspondence analysis results
