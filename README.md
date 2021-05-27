@@ -1,1 +1,1 @@
-# Correspondence Analysis Made Easy For Everyone
+# Correspondence Analysis with Python. Made Easy and For Everyone (^_^)
