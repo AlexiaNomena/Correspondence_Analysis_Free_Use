@@ -27,15 +27,15 @@ if method == "CA":# for CA
     method = CA
     if separate_by_axis:
         try:
-            pdf= PdfPages("Figures/Separated/CA/"+sub+"CA_text_"+form+"_F1_to_F%d_separated.pdf"%num_dim_given)
+            pdf= PdfPages("Figures/CA/"+sub+"CA_text_"+form+"_F1_to_F%d_separated.pdf"%num_dim_given)
         except:
-            pdf= PdfPages("Figures/Separated/CA/"+sub+"CA_text_"+form+"_F1_to_F2_separated.pdf")
+            pdf= PdfPages("Figures/CA/"+sub+"CA_text_"+form+"_F1_to_F2_separated.pdf")
             
     else:
         try:
-            pdf= PdfPages("Figures/Separated/CA/"+sub+"CA_text_"+form+"_F1_to_F%d_all.pdf"%num_dim_given)
+            pdf= PdfPages("Figures/CA/"+sub+"CA_text_"+form+"_F1_to_F%d_all.pdf"%num_dim_given)
         except:
-            pdf= PdfPages("Figures/Separated/CA/"+sub+"CA_text_"+form+"_F1_to_F2_all.pdf")
+            pdf= PdfPages("Figures/CA/"+sub+"CA_text_"+form+"_F1_to_F2_all.pdf")
             
     standard = True
     
@@ -46,7 +46,7 @@ if method == "CA":# for CA
 
 elif method == "MCMCA": # for MCMCA
     method = MCMCA
-    pdf= PdfPages("Figures/Separated/MCMCA/"+sub+"MCMCA_text_"+form+".pdf")
+    pdf= PdfPages("Figures/MCMCA/"+sub+"MCMCA_text_"+form+".pdf")
     standard = False
     # specify which variables to show on the clustermap  # must be lists e.g. (np.arange(100, 120, dtype = int), None)
     specify_rows = None
@@ -68,10 +68,10 @@ except:
 
 # Throw other tables in one pdf
 if plot_contingency:     
-    pdf2 = PdfPages("Figures/Separated/"+"Contingency_text_%s.pdf"%form)
+    pdf2 = PdfPages("Figures/"+"Contingency_text_%s.pdf"%form)
 
 if plot_data_table:
-    pdf3 = PdfPages("Figures/Separated/"+"Data_text_%s.pdf"%form)
+    pdf3 = PdfPages("Figures/"+"Data_text_%s.pdf"%form)
     
 # Row_Vals(Data) gives all the codes for the forms existing in the rows of the dataset
 # Data.columns gives all the texts existing in the columns of the dataset 

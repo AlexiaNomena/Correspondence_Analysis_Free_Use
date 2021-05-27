@@ -8,7 +8,7 @@ RawData = "Data/Codings_Decrees_20_01_21.xlsx"
 sheet_name_list = ["Synodal Decrees", "Comparative Corpus"] 
 
 #sheet_name_list = ["Synodal Decrees"]
-sub = ""#"Synodal/" # indicate the subfolder for the result, use "" for using main figure folder Figures/Separated/
+sub = ""#"Synodal/" # indicate the subfolder for the result (might need to be created), use "" for saving in the main figure folder Figures/
 
 ##################### what are the name of the texts you would like to analyse? Always between " " #####################
 text_list = ["Hermopolisstele", "Hungersnotstele", "Satrapenstele", "Taimuthesstele", "Gallusstele",
@@ -68,7 +68,7 @@ num_dim_given = 5
 separate_by_axis = False
 
 ###################### Implementation : no changes required ##############################
-# Results set in Figure/Separated/CA or Figure/Separated/MCMCA
+# Results set in Figure/CA or Figure/MCMCA
 from implementation import *    
 
 
