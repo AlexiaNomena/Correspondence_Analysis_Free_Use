@@ -83,13 +83,6 @@ if subset_rows:
     rows = np.array(form_codes_to_study)
 
 
-# only for MCMCA Positioning and scaling variables, another method can be used to determine the exact forms which occur in a particular cluster of text
-pos = {"SP":np.array([-1, 1]), "PI":np.array([-1, 1]), "PII":np.array([-1, -1]), "P": np.array([1, 1]),
-       "Vb":np.array([-1, 1]),"Subj": np.array([-1, 1]),  "Comp": np.array([1, -1])} # Chose to flip one axis or both
-
-scale = {"SP":[1,1], "PI":[5,3], "PII": [1,1], "P": [1, 1], "Vb": [1, 1], "Subj": [1,1], "Comp": [1,1]} # must be both positive so that the axes do not flip wrongly
-
-
 ### annotate a specific form on the plot #####
 try:
     rows_annot = []
