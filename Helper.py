@@ -5,7 +5,7 @@ For only one form to analyse
 
 #################### Enter your own data information as in the example here ################################################
 RawData = "Data/Codings_Decrees_20_01_21.xlsx" # your data file name, including it's location
-sheet_name_list = ["Synodal Decrees", "Comparative Corpus"] # the specific name of the excel sheet you would like to include in the analysis
+sheet_name_list = ["Synodal Decrees", "Comparative Corpus"] # the specific names of the excel sheets you would like to include in the analysis
 
 sub = ""#"Synodal/" # indicate the subfolder for the result (might need to be created), use "" for saving in the main figure folder Figures/
 
