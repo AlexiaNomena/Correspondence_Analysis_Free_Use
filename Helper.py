@@ -9,7 +9,7 @@ sheet_name_list = ["Synodal Decrees", "Comparative Corpus"] # the specific names
 
 sub = ""#"Synodal/" # indicate the subfolder for the result (might need to be created), use "" for saving in the main figure folder Figures/
 
-##################### What are the name of the texts you would like to analyse? Always between " " #####################
+##################### What are the name of the column variable (here texts) you would like to analyse? Always between " " #####################
 text_list = ["Hermopolisstele", "Hungersnotstele", "Satrapenstele", "Taimuthesstele", "Gallusstele",
              "Alexandriadekret", "Kanopusdekret", "Philensis II Dekret", "Rosettanadekret", 
              "Philensis I Dekret"]
