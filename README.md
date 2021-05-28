@@ -3,7 +3,6 @@
 
 ## Description
 Perform standard correspondence analysis of two categorical variables (code module `ca.py` in the folder Methods/).
-Software designed to be suitable for any users from any disciplines.
 
 Code can be used to perform correspondence analysis on any dataset that can be transformed into a pandas DataFrame (see the code `ca.py` in the folder Methods/).
 
