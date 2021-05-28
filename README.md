@@ -37,7 +37,6 @@ If the dataset is already a contingency table, then the parameter `isCont` must 
 Numerical coding of texts in Égyptien de Tradition, each single data consisting of a ten digits number encoding for the grammatical structure of a sentence. 
 
 Examples can be found [here](data_link).
-Data/ can be used to include data.
 
 ## Results
 Figures/ folder is the default location of figure outputs.
