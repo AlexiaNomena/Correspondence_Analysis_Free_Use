@@ -3,7 +3,7 @@ Analysis : Text vs. Forms
 For only one form to analyse
 """
 
-#################### Parameterisation ################################################
+#################### Enter your data information ################################################
 RawData = "Data/Codings_Decrees_20_01_21.xlsx"
 sheet_name_list = ["Synodal Decrees", "Comparative Corpus"] 
 
@@ -25,7 +25,7 @@ text_dating = {"Hermopolisstele":"377 BCE", "Hungersnotstele":"200 BCE", "Taimut
                "Satrapenstele":"311 BCE", "Mimosa":"000", "Alexandriadekret":"243 BCE", "Kanopusdekret":"238 BCE", 
                "Philensis II Dekret":"186 BCE", "Philensis I Dekret":"185 BCE", "Rosettanadekret":"196 BCE"}
 
-# List of forms to analyse, format  Accronym:Description
+##################### List of forms to analyse, format  "Accronym":"Description" ###########
 form_labels = {"Vb": "Verbal forms",  "Comp":"Complete Code", "SP":"Sentence particles", "PI":"Particles I", "PII":"Particles II", "P":"Particles", "Subj": "Subjects"}
 form_list = ["Vb", "Comp", "SP", "PI", "PII", "P", "Subj"]
 
