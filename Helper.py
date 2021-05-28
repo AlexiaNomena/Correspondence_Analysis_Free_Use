@@ -3,29 +3,28 @@ Analysis : Text vs. Forms
 For only one form to analyse
 """
 
-#################### Enter your data information ################################################
-RawData = "Data/Codings_Decrees_20_01_21.xlsx"
-sheet_name_list = ["Synodal Decrees", "Comparative Corpus"] 
+#################### Enter your own data information as in the example here ################################################
+RawData = "Data/Codings_Decrees_20_01_21.xlsx" # your data file name, including it's location
+sheet_name_list = ["Synodal Decrees", "Comparative Corpus"] # the specific name of the excel sheet you would like to include in the analysis
 
-#sheet_name_list = ["Synodal Decrees"]
 sub = ""#"Synodal/" # indicate the subfolder for the result (might need to be created), use "" for saving in the main figure folder Figures/
 
-##################### what are the name of the texts you would like to analyse? Always between " " #####################
+##################### What are the name of the texts you would like to analyse? Always between " " #####################
 text_list = ["Hermopolisstele", "Hungersnotstele", "Satrapenstele", "Taimuthesstele", "Gallusstele",
              "Alexandriadekret", "Kanopusdekret", "Philensis II Dekret", "Rosettanadekret", 
              "Philensis I Dekret"]
 
-##################### give the labels, format "Text":"Label" #####################
+##################### Give the labels of your column variable, format "Column_variable":"Label" #####################
 text_labels = {"Hermopolisstele":"V1", "Satrapenstele":"V2", "Hungersnotstele":"V3", "Taimuthesstele":"V4", "Gallusstele":"V5", "Pharaon 6":"V6", "Mimosa":"Mim",
              "Alexandriadekret":"S1", "Kanopusdekret":"S2", "Rosettanadekret":"S3", "Philensis II Dekret":"S4", "Philensis I Dekret":"S5"}
 
 
-##################### give the dating, format "Text":"Dating" #####################
+##################### give the dating, format "Colunm_variable":"Dating" #####################
 text_dating = {"Hermopolisstele":"377 BCE", "Hungersnotstele":"200 BCE", "Taimuthesstele":"100 BCE", "Gallusstele":"29 BCE", 
                "Satrapenstele":"311 BCE", "Mimosa":"000", "Alexandriadekret":"243 BCE", "Kanopusdekret":"238 BCE", 
                "Philensis II Dekret":"186 BCE", "Philensis I Dekret":"185 BCE", "Rosettanadekret":"196 BCE"}
 
-##################### List of forms to analyse, format  "Accronym":"Description" ###########
+##################### List of row variables to analyse, format  "Accronym":"Description" ###########
 form_labels = {"Vb": "Verbal forms",  "Comp":"Complete Code", "SP":"Sentence particles", "PI":"Particles I", "PII":"Particles II", "P":"Particles", "Subj": "Subjects"}
 form_list = ["Vb", "Comp", "SP", "PI", "PII", "P", "Subj"]
 
