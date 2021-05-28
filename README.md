@@ -34,10 +34,9 @@ Please enter all the inputs by following the corresponding questions/decriptions
 If the dataset is already a contingency table, then the parameter `isCont` must be given as `True`.
 
 ## Supported Data type (if not a contingency table)
-Excel file. In our specific project, datafile contains numerical coding of texts in Égyptien de Tradition, each single data consisting of a ten digits number encoding for the grammatical structure of a sentence. 
+Excel file. In our specific project, datafile contains numerical coding of texts in Égyptien de Tradition, each single data consisting of a ten digits number encoding for the grammatical structure of a sentence (files be found [here](data_link)).
 
-Examples can be found [here](data_link).
-
+You can also use your own python function to clean your dataset instead of the function `Cleaned_dataset` in `implementation.py`.
 ## Results
 Figures/ folder is the default location of figure outputs.
 
