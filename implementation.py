@@ -6,9 +6,9 @@ from Methods.figure_maps import *  # module for clustermaps other maps
 from Helper import *
 ### Clean data #######
 if not isCont:
-    Data = Cleaned_Data(RawData, sheet_name_list, text_list, form = form, form_labels = form_labels)
+    Data = Cleaned_Data(RawData, sheet_name_list, columns_list, form = row_val, form_labels = rows_labels)
     '''
-    @what Cleaned_Data does:  - clean the whole dataset to produce a panda dataframe of qualitative variables needed: text vs form
+    @what Cleaned_Data does:    - clean the whole dataset to produce a panda dataframe of qualitative variables needed: text vs form
                                 - text in the columns and form in the rows
                                 - if form is None, then the analysis is text vs complete code
     
@@ -21,21 +21,21 @@ if not isCont:
 else:
     isCont = isCont
 
-# Throw analysis figs in one pdf, specify the location and name of figure, the name of the form is appended to it to differentiate the filename
+# Throw analysis figs in one pdf, specify the location and name of figure, the name of the row variabls is appended to it to differentiate the filename
 from matplotlib.backends.backend_pdf import PdfPages
 if method == "CA":# for CA
     method = CA
     if separate_by_axis:
         try:
-            pdf= PdfPages("Figures/CA/"+sub+"CA_text_"+form+"_F1_to_F%d_separated.pdf"%num_dim_given)
+            pdf= PdfPages("Figures/CA/"+sub+"CA_text_"+row_val+"_F1_to_F%d_separated.pdf"%num_dim_given)
         except:
-            pdf= PdfPages("Figures/CA/"+sub+"CA_text_"+form+"_F1_to_F2_separated.pdf")
+            pdf= PdfPages("Figures/CA/"+sub+"CA_text_"+row_val+"_F1_to_F2_separated.pdf")
             
     else:
         try:
-            pdf= PdfPages("Figures/CA/"+sub+"CA_text_"+form+"_F1_to_F%d_all.pdf"%num_dim_given)
+            pdf= PdfPages("Figures/CA/"+sub+"CA_text_"+row_val+"_F1_to_F%d_all.pdf"%num_dim_given)
         except:
-            pdf= PdfPages("Figures/CA/"+sub+"CA_text_"+form+"_F1_to_F2_all.pdf")
+            pdf= PdfPages("Figures/CA/"+sub+"CA_text_"+row_val+"_F1_to_F2_all.pdf")
             
     standard = True
     
@@ -46,7 +46,7 @@ if method == "CA":# for CA
 
 elif method == "MCMCA": # for MCMCA
     method = MCMCA
-    pdf= PdfPages("Figures/MCMCA/"+sub+"MCMCA_text_"+form+".pdf")
+    pdf= PdfPages("Figures/MCMCA/"+sub+"MCMCA_text_"+row_val+".pdf")
     standard = False
     # specify which variables to show on the clustermap  # must be lists e.g. (np.arange(100, 120, dtype = int), None)
     specify_rows = None
@@ -68,26 +68,26 @@ except:
 
 # Throw other tables in one pdf
 if plot_contingency:     
-    pdf2 = PdfPages("Figures/"+"Contingency_text_%s.pdf"%form)
+    pdf2 = PdfPages("Figures/"+"Contingency_text_%s.pdf"%row_val)
 
 if plot_data_table:
-    pdf3 = PdfPages("Figures/"+"Data_text_%s.pdf"%form)
+    pdf3 = PdfPages("Figures/"+"Data_text_%s.pdf"%row_val)
     
 # Row_Vals(Data) gives all the codes for the forms existing in the rows of the dataset
 # Data.columns gives all the texts existing in the columns of the dataset 
-Cols = Data.columns
-rows = Row_Vals(Data) # take all row elements of the dataset
+AllCols = Data.columns
+AllRows = Row_Vals(Data) # take all row elements of the dataset
 
 # in case one only study a subset of the code
 if subset_rows:
-    rows = np.array(form_codes_to_study)
+    AllRows = np.array(rows_to_study)
 
 
 ### annotate a specific form on the plot #####
 try:
     rows_annot = []
-    for s in range(len(annot_forms)):
-        ind = np.where(rows == annot_forms[s])[0]
+    for s in range(len(annot_rows)):
+        ind = np.where(AllRows == annot_rows[s])[0]
         if len(ind) >= 1: # row should appear only one time
             rows_annot = rows_annot + list(ind)
 except:
@@ -101,17 +101,17 @@ except:
     
 ######### Analysis ##########        
 Perform_CA, fig, contfig = method(Data, 
-                row_vals = rows,   # List of form items to consider in the analysis (choose from codes of the forms)
-                col_vals = Cols,      # List of Text items to consider in the analysis (choose from texts_list)
+                row_vals = AllRows,   # List of form items to consider in the analysis (choose from codes of the forms)
+                col_vals = AllCols,      # List of Text items to consider in the analysis (choose from texts_list)
                 rows_to_Annot = rows_annot,         # indexes of the form items to annotate, if None then no annotation
-                cols_to_Annot = np.arange(0,len(Cols),  dtype=int), # indexes of the text items to annotate
+                cols_to_Annot = np.arange(0,len(AllCols),  dtype=int), # indexes of the text items to annotate
                 Label_rows = Row_Vals(Data),  # list of labels respectivelly corresponding to the form items that is in row_vals
-                Label_cols = text_labels,     # dictionary of labels respectivelly corresponding to the text items that are in col_vals
-                cols_dating = text_dating,    # dictionary of dates respectivelly corresponding to the text items that are in col_vals
+                Label_cols = columns_labels,     # dictionary of labels respectivelly corresponding to the text items that are in col_vals
+                cols_dating = columns_dating,    # dictionary of dates respectivelly corresponding to the text items that are in col_vals
                 table = True,                 # Include summary table in the figure or not = True or False
                 markers =[(".",10), ("+",30)],# pyplot markertypes, markersize: [(marker for the form items, size), (marker for the text items, size)] 
                 col = ["grey", "red"],        # pyplot colortypes : [color for the form items, color for the text items]                  
-                figtitle = "Text vs. " + form_labels[form], # The title of the figure in the analysis
+                figtitle = "Text vs. " + rows_labels[row_val], # The title of the figure in the analysis
                 outliers = (True, True), # to show (True) or not to show (False) the outliers of (row values, col values)
                 p_val = p_value, # default is 0.01
                 reverse_axis = False,    # True if reverse the order of the axis coordinates                      
@@ -128,7 +128,7 @@ if plot_data_table:
     fig2= pl.figure(figsize=(10,10))
     ax3 = fig2.add_subplot(211)
     pd.plotting.table(ax3, Data, loc="upper center", fontsize = 12)
-    pl.title("Data table for text vs. "+form_labels[form])
+    pl.title("Data table for text vs. "+rows_labels[row_val])
     ax3.axis("off")
     pdf3.savefig(fig2, bbox_inches = 'tight')
 
@@ -138,9 +138,9 @@ if (Perform_CA is not None)*(fig is not None): # means that the analysis was suc
     
     # Plot clustermaps to see the correspondence within rows and columns
     ClustFigs = Cluster_maps(Perform_CA, 
-                                   form_labels[form], 
+                                   rows_labels[row_val], 
                                    Label_rows = Row_Vals(Data), 
-                                   Label_cols = [text_labels[c] for c in Data.columns], 
+                                   Label_cols = [columns_labels[c] for c in Data.columns], 
                                    standard = standard,
                                    num_dim = num_dim, 
                                    specific_rows_cols = specific_rows_cols, 
@@ -149,20 +149,6 @@ if (Perform_CA is not None)*(fig is not None): # means that the analysis was suc
     for i in range(len(ClustFigs)):
         pdf.savefig(ClustFigs[i], bbox_inches='tight')
     
-   
-    """
-    # This is just more details which need to updated if needed in the future
-    # Plot the unclustered distance heatmap to see the correspondence within rows and columns
-    DistFigs = Distance_maps(Perform_CA, 
-                                   form_labels[form], 
-                                   Label_rows = Row_Vals(Data), 
-                                   Label_cols = [text_labels[c] for c in Data.columns], 
-                                   standard = standard,
-                                   num_dim = num_dim,
-                                   specific_rows_cols = specific_rows_cols)
-    for i in range(len(DistFigs)):
-        pdf.savefig(DistFigs[i], bbox_inches='tight')
-    """    
 
 pdf.close()
 

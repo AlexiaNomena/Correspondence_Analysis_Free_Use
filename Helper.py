@@ -10,35 +10,35 @@ sheet_name_list = ["Synodal Decrees", "Comparative Corpus"] # the specific names
 sub = ""#"Synodal/" # indicate the subfolder for the result (might need to be created), use "" for saving in the main figure folder Figures/
 
 ##################### What are the name of the column variable (here texts) you would like to analyse? Always between " " #####################
-text_list = ["Hermopolisstele", "Hungersnotstele", "Satrapenstele", "Taimuthesstele", "Gallusstele",
+columns_list = ["Hermopolisstele", "Hungersnotstele", "Satrapenstele", "Taimuthesstele", "Gallusstele",
              "Alexandriadekret", "Kanopusdekret", "Philensis II Dekret", "Rosettanadekret", 
              "Philensis I Dekret"]
 
 ##################### Give the labels of your column variable, format "Column_variable":"Label" #####################
-text_labels = {"Hermopolisstele":"V1", "Satrapenstele":"V2", "Hungersnotstele":"V3", "Taimuthesstele":"V4", "Gallusstele":"V5", "Pharaon 6":"V6", "Mimosa":"Mim",
+columns_labels = {"Hermopolisstele":"V1", "Satrapenstele":"V2", "Hungersnotstele":"V3", "Taimuthesstele":"V4", "Gallusstele":"V5", "Pharaon 6":"V6", "Mimosa":"Mim",
              "Alexandriadekret":"S1", "Kanopusdekret":"S2", "Rosettanadekret":"S3", "Philensis II Dekret":"S4", "Philensis I Dekret":"S5"}
 
 
 ##################### give the dating, format "Colunm_variable":"Dating" #####################
-text_dating = {"Hermopolisstele":"377 BCE", "Hungersnotstele":"200 BCE", "Taimuthesstele":"100 BCE", "Gallusstele":"29 BCE", 
+columns_dating = {"Hermopolisstele":"377 BCE", "Hungersnotstele":"200 BCE", "Taimuthesstele":"100 BCE", "Gallusstele":"29 BCE", 
                "Satrapenstele":"311 BCE", "Mimosa":"000", "Alexandriadekret":"243 BCE", "Kanopusdekret":"238 BCE", 
                "Philensis II Dekret":"186 BCE", "Philensis I Dekret":"185 BCE", "Rosettanadekret":"196 BCE"}
 
-##################### List of row variables to analyse (here gramatical forms), format  "Accronym":"Description" ###########
-form_labels = {"Vb": "Verbal forms",  "Comp":"Complete Code", "SP":"Sentence particles", "PI":"Particles I", "PII":"Particles II", "P":"Particles", "Subj": "Subjects"}
-form_list = ["Vb", "Comp", "SP", "PI", "PII", "P", "Subj"]
+##################### List of row variables to analyse (here grammatical forms), format  "Accronym":"Description" ###########
+rows_labels = {"Vb": "Verbal forms",  "Comp":"Complete Code", "SP":"Sentence particles", "PI":"Particles I", "PII":"Particles II", "P":"Particles", "Subj": "Subjects"}
+rows_list = ["Vb", "Comp", "SP", "PI", "PII", "P", "Subj"]
 
-################## Which form do you want to analyse? #################################
-form = "Vb"
+################## Which row (here form) do you want to analyse? #################################
+row_val = "Vb"
 
-#### Would you like to study a particular group of forms? Yes = True, No = False ######
+#### Would you like to study a particular group of row variables (here forms)? Yes = True, No = False ######
 subset_rows = False 
 
-#### If yes, what are the codes of your subset of forms ####################
-form_codes_to_study = [322, 256, 378, 690, 999]  ### list will only be used if subset_rows = True (each one must be present in at least one of the text)
+#### If yes, what are the codes of your subset of rows variables (here forms) ####################
+rows_to_study = [322, 256, 378, 690, 999]  ### list will only be used if subset_rows = True (each one must be present in at least one of the text)
 
 ################# Would you like to annotate specific form code on the CA or MCMCA figures #######
-annot_forms = [322, 256] # example 322 and 256 for verbs, add more if needed
+annot_rows = [322, 256] # example 322 and 256 for verbs, add more if needed
 
 ################## Would you like to get the contingency table? ##################################
 plot_contingency = True  # Figures/Separated/
