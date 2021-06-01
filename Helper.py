@@ -69,7 +69,7 @@ num_dim_given = 5
 separate_by_axis = False
 
 ##################### Implementation : no changes required ####################################################################################################
-# Results set in Figure/CA or Figure/MCMCA
+# Results can be found in Figure/CA or Figure/MCMCA
 from implementation import *    
 
 
