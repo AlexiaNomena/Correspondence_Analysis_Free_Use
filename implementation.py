@@ -20,6 +20,12 @@ if not isCont:
     '''
 else:
     isCont = isCont
+    ### You can directly enter your data as a contingency table, howvever you need to check if the row/columns category names are consistent ###
+    import pandas as pd 
+    # in this setting, the column category data start at second index of dataset but you have to check for consistency 
+    data_dic = {cols:list(RawData[cols]) for cols in RawData.columns[1: ]}
+    # Make the panda dataFrame. index = name of row categories, in this case row category name are given as first column of dataset but you have to check for consistency
+    Data = pd.DataFrame(data = data_dic, index = list(RawData[RawData.columns[0]])) 
 
 # Throw analysis figs in one pdf, specify the location and name of figure, the name of the row variabls is appended to it to differentiate the filename
 from matplotlib.backends.backend_pdf import PdfPages
