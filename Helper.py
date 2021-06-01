@@ -9,7 +9,8 @@ For only one form to analyse
 RawData = "Data/Codings_Decrees_20_01_21.xlsx" # your data file name, including it's location
 sheet_name_list = ["Synodal Decrees", "Comparative Corpus"] # the specific names of the excel sheets you would like to include in the analysis
 
-sub = ""#"Synodal/" # indicate the subfolder for the result (might need to be created), use "" for saving in the main figure folder Figures/
+#"Synodal/" # indicate the subfolder for the result (might need to be created), use "" for saving in the main figure folder Figures/
+sub = ""   
 
 ##################### What are the name of the categories of column variable (here texts) you would like to analyse? Always between " " #####################
 ##################### Replace with your own column category names in your excel data file ###################################################################
