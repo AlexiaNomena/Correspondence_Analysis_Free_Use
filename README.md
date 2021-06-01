@@ -31,7 +31,8 @@ Please enter all the inputs by following the corresponding questions/decriptions
 ### Users with a moderate background in python
 `implementation.py` can be used to modify the default figure parameter settings. For further modifications, see all the codes in folder Methods/
 
-If the dataset is already a contingency table, then the parameter `isCont` must be given as `True`.
+### Not for all Users 
+If the dataset is already a contingency table, then the parameter `isCont` must be given as `True` and the table should be transformed into a panda dataframe (lines 21 -- 28 of `implementation.py`)
 
 ## Supported Data type (if it is not a contingency table)
 Excel file. In our specific project, datafile contains numerical coding of texts in Égyptien de Tradition, each single data consisting of a ten digits number encoding for the grammatical structure of a sentence (files be found [here](data_link)).
