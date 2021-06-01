@@ -4,7 +4,7 @@ For only one form to analyse
 """
 
 #################### Enter your own data information as in the example here ################################################
-#################### Replace with your own row/column category names in your excel data file ###############################
+#################### Replace with your own row/column category/names in your excel data file ###############################
 
 RawData = "Data/Codings_Decrees_20_01_21.xlsx" # your data file name, including it's location
 sheet_name_list = ["Synodal Decrees", "Comparative Corpus"] # the specific names of the excel sheets you would like to include in the analysis
@@ -33,23 +33,23 @@ rows_list = ["Vb", "Comp", "SP", "PI", "PII", "P", "Subj"]
 #################### Which specific row variable (here form) do you want to analyse? ##########################################################################
 row_val = "Vb"
 
-#################### Would you like to study a particular subgroup of categories of the row variables (here forms)? Yes = True, No = False #####################
+#################### Would you like to study a particular subgroup of categories of the row variables? Yes = True, No = False #################################
 subset_rows = False 
 
-#################### If yes, what are the codes of your subgroup of categories of the row variables (here forms codes) #########################################
-#################### Replace with your own row category names in your excel data file ##########################################################################
+#################### If yes, what are the codes of your subgroup of categories of the row variables (here forms codes) ########################################
+#################### Replace with your own row category names in your excel data file #########################################################################
 rows_to_study = [322, 256, 378, 690, 999]  ### list will only be used if subset_rows = True (each one must be present in at least one of the text)
 
 ################# Would you like to annotate a specific row category on the CA or MCMCA figures #######
 annot_rows = [322, 256] # example 322 and 256 for verbs, add more if needed
 
-################## Would you like to get the contingency table? ##################################
+################## Would you like to get the contingency table? #######################################
 plot_contingency = True  # Figures/Separated/
 
-################## Would you like to get the data table? #########################################
+################## Would you like to get the data table? ##############################################
 plot_data_table = True  # Figures/Separated/
 
-################# Which method would you like to apply? ###################################
+##################### Which method would you like to apply? ###################################################################################################
 # Use "CA" to perform standard Correspondence Analysis
 # Use "MCMCA" to perform Markov Chain Model Correspondence Analysis
 method = "CA"
@@ -60,7 +60,7 @@ isCont = False
 ############### What is the p_value for significance filtering ############################
 p_value = 0.05 # must be between 0 and 1, if not given then result is not filtered
 
-################# How many factor dimensions to use on clustermap? #######################
+################# How many factor dimensions to use on clustermap? ########################
 ### if not given then two factor dimensions will be used 
 # cannot exceed the minimun between nr. of texts and nr. forms
 num_dim_given = 5
@@ -68,7 +68,7 @@ num_dim_given = 5
 ################# Only for CA method, would you like a CA clustermap separated by axis ##############################
 separate_by_axis = False
 
-###################### Implementation : no changes required ##############################
+##################### Implementation : no changes required ####################################################################################################
 # Results set in Figure/CA or Figure/MCMCA
 from implementation import *    
 
