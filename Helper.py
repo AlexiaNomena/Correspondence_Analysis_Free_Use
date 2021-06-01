@@ -10,6 +10,7 @@ sheet_name_list = ["Synodal Decrees", "Comparative Corpus"] # the specific names
 sub = ""#"Synodal/" # indicate the subfolder for the result (might need to be created), use "" for saving in the main figure folder Figures/
 
 ##################### What are the name of the categories of column variable (here texts) you would like to analyse? Always between " " #####################
+##################### The column category names must be the same as in your excel data file #################################################################
 columns_list = ["Hermopolisstele", "Hungersnotstele", "Satrapenstele", "Taimuthesstele", "Gallusstele",
              "Alexandriadekret", "Kanopusdekret", "Philensis II Dekret", "Rosettanadekret", 
              "Philensis I Dekret"]
@@ -17,7 +18,6 @@ columns_list = ["Hermopolisstele", "Hungersnotstele", "Satrapenstele", "Taimuthe
 ##################### Give the labels of your column category, format "Column_category":"Label" #####################
 columns_labels = {"Hermopolisstele":"V1", "Satrapenstele":"V2", "Hungersnotstele":"V3", "Taimuthesstele":"V4", "Gallusstele":"V5", "Pharaon 6":"V6", "Mimosa":"Mim",
              "Alexandriadekret":"S1", "Kanopusdekret":"S2", "Rosettanadekret":"S3", "Philensis II Dekret":"S4", "Philensis I Dekret":"S5"}
-
 
 ##################### give the dating, format "Colunm_category":"Dating" #####################
 columns_dating = {"Hermopolisstele":"377 BCE", "Hungersnotstele":"200 BCE", "Taimuthesstele":"100 BCE", "Gallusstele":"29 BCE", 
@@ -61,7 +61,6 @@ p_value = 0.05 # must be between 0 and 1, if not given then result is not filter
 ### if not given then two factor dimensions will be used 
 # cannot exceed the minimun between nr. of texts and nr. forms
 num_dim_given = 5
-
 
 ################# Only for CA method, would you like a CA clustermap separated by axis ##############################
 separate_by_axis = False
