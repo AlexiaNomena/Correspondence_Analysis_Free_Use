@@ -4,13 +4,15 @@ For only one form to analyse
 """
 
 #################### Enter your own data information as in the example here ################################################
+#################### Replace with your own row/column category names in your excel data file ###############################
+
 RawData = "Data/Codings_Decrees_20_01_21.xlsx" # your data file name, including it's location
 sheet_name_list = ["Synodal Decrees", "Comparative Corpus"] # the specific names of the excel sheets you would like to include in the analysis
 
 sub = ""#"Synodal/" # indicate the subfolder for the result (might need to be created), use "" for saving in the main figure folder Figures/
 
 ##################### What are the name of the categories of column variable (here texts) you would like to analyse? Always between " " #####################
-##################### The column category names must be the same as in your excel data file #################################################################
+##################### Replace with your own column category names in your excel data file ###################################################################
 columns_list = ["Hermopolisstele", "Hungersnotstele", "Satrapenstele", "Taimuthesstele", "Gallusstele",
              "Alexandriadekret", "Kanopusdekret", "Philensis II Dekret", "Rosettanadekret", 
              "Philensis I Dekret"]
@@ -28,16 +30,17 @@ columns_dating = {"Hermopolisstele":"377 BCE", "Hungersnotstele":"200 BCE", "Tai
 rows_labels = {"Vb": "Verbal forms",  "Comp":"Complete Code", "SP":"Sentence particles", "PI":"Particles I", "PII":"Particles II", "P":"Particles", "Subj": "Subjects"}
 rows_list = ["Vb", "Comp", "SP", "PI", "PII", "P", "Subj"]
 
-################## Which specific row variable (here form) do you want to analyse? #################################
+#################### Which specific row variable (here form) do you want to analyse? ##########################################################################
 row_val = "Vb"
 
-#### Would you like to study a particular subgroup of categories of the row variables (here forms)? Yes = True, No = False ######
+#################### Would you like to study a particular subgroup of categories of the row variables (here forms)? Yes = True, No = False #####################
 subset_rows = False 
 
-#### If yes, what are the codes of your subgroup of rows categories (here forms codes) ####################
+#################### If yes, what are the codes of your subgroup of categories of the row variables (here forms codes) #########################################
+#################### Replace with your own row category names in your excel data file ##########################################################################
 rows_to_study = [322, 256, 378, 690, 999]  ### list will only be used if subset_rows = True (each one must be present in at least one of the text)
 
-################# Would you like to annotate a specific row code on the CA or MCMCA figures #######
+################# Would you like to annotate a specific row category on the CA or MCMCA figures #######
 annot_rows = [322, 256] # example 322 and 256 for verbs, add more if needed
 
 ################## Would you like to get the contingency table? ##################################
