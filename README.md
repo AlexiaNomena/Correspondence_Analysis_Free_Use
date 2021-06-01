@@ -31,7 +31,7 @@ Please enter all the inputs by following the corresponding questions/decriptions
 ### Users with a moderate background in python
 `implementation.py` can be used to modify the default figure parameter settings. For further modifications, see all the codes in folder Methods/
 
-### Not for all Users 
+### A note for all Users 
 If the dataset is already a contingency table, then the parameter `isCont` must be given as `True` and the table should be transformed into a panda dataframe (lines 21 -- 28 of `implementation.py`)
 
 ## Supported Data type (if it is not a contingency table)
