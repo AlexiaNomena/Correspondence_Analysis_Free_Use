@@ -24,7 +24,7 @@ else:
     import pandas as pd 
     # in this setting, the column category data start at second column of dataset but you have change if needed, e.g., remove [1: ] if columns category names starts from first column of dataset 
     data_dic = {cols:list(RawData[cols]) for cols in RawData.columns[1: ]}
-    # index = name of row categories, in this case row category name are given as first column of dataset but you can directly enter your row category names as a list
+    # index = name of row categories, in this case row category name are given as first column of dataset but you can directly enter your row category names as a list, i.e., ["item_1", "item_2", ...]
     row_list = list(RawData[RawData.columns[0]])
     
     #Make the panda dataFrame
