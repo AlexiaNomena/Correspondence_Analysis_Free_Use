@@ -59,5 +59,6 @@ def contingency(Data, row_vals, col_vals, missing = (False, False)):
             remove += indexes == row_notin[k]
         
         ContDataFrame = pd.DataFrame(data = Cont[~remove, :], index = row_vals[~remove].astype(int), columns = col_vals)
+        Cont = Cont[~remove, :]
     
     return Cont, np.sum(Cont), ContDataFrame 

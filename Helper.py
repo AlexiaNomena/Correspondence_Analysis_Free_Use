@@ -32,7 +32,7 @@ rows_labels = {"Vb": "Verbal forms",  "Comp":"Complete Code", "SP":"Sentence par
 rows_list = ["Vb", "Comp", "SP", "PI", "PII", "P", "Subj"]
 
 #################### Which specific row variable (here form) do you want to analyse? ##########################################################################
-row_val = "Vb"
+row_val = "SP"
 
 #################### Would you like to study a particular subgroup of categories of the row variables? Yes = True, No = False #################################
 subset_rows = False 
