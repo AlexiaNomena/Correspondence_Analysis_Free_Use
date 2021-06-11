@@ -77,7 +77,7 @@ def Annotate(ax, rows_to_Annot, cols_to_Annot, Label_rows, Label_cols, xy_rows, 
         pdist_n = scp.spatial.distance.pdist(xy_rows)
         pdist = scp.spatial.distance.squareform(pdist_n)
         pdist_n[np.isnan(pdist_n)] = 10000000
-        pdist_n[np.isfinite(pdist_n)] = 10000000
+        pdist_n[~np.isfinite(pdist_n)] = 10000000
         
         l_special = []
         for j in rows_to_Annot:
@@ -101,7 +101,7 @@ def Annotate(ax, rows_to_Annot, cols_to_Annot, Label_rows, Label_cols, xy_rows, 
         pdist_n = scp.spatial.distance.pdist(xy_cols)
         pdist = scp.spatial.distance.squareform(pdist_n)
         pdist_n[np.isnan(pdist_n)] = 10000000
-        pdist_n[np.isfinite(pdist_n)] = 10000000
+        pdist_n[~np.isfinite(pdist_n)] = 10000000
         
         l_special = []
         for j in cols_to_Annot:
