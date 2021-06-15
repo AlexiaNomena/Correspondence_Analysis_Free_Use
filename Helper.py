@@ -3,13 +3,13 @@ Analysis : Text vs. Forms
 For only one form to analyse
 """
 
-#################### Enter your own data information as in the example here ################################################
-#################### Replace with your own row/column category/names in your excel data file ###############################
+#################### Enter your own data information as in the example here, enter your own data file locations ###########################################
+#################### Replace with your own row/column category/names in your excel data file ##############################################################
 
 RawData = "Data/Codings_Decrees_20_01_21.xlsx" # your data file name, including it's location
 sheet_name_list = ["Synodal Decrees", "Comparative Corpus"] # the specific names of the excel sheets you would like to include in the analysis
 
-### indicate the subfolder for the result (might need to be created), e.g., "Synodal/" but use "" for saving in the main figure folder Figures/
+### indicate the folder inside Figures/CA/ Figures/CA/MCMCA in which to put the result (might need to be created), e.g., "Synodal/" but use "" for saving in the figure results folders
 sub = ""   
 
 ##################### What are the name of the categories of column variable (here texts) you would like to analyse? Always between " " #####################
