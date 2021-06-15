@@ -21,7 +21,9 @@ packages: numpy, pandas, matplotlib, matplotlib.pyplot, matplotlib.backends.back
 You can also get all these using conda by creating a new environment with the spec file `myPy3_spec.txt` (for a guidance, click [here](https://conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html))
 ## Usage requirement
 See official publication link [here](https://opus4.kobv.de/opus4-zib/frontdoor/index/index/docId/8257)
+
 DOI: https://doi.org/10.12752/8257
+
 Licence: Creative Commons - CC BY - Namensnennung 4.0 International
 
 ## Code Execution
