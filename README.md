@@ -9,7 +9,7 @@ Code can be used to perform correspondence analysis on any dataset that can be t
 The method `mcmca.py` can be used for correspondence analysis of dataset that could be assumed to be generated from a Markov Chain Model.
 
 ## Specific Project
-Project Ef5-4: "The evolution of Ancient Egyptian - Quantitative and Non- Quantitative Mathematical Linguistics".
+Project Ef5-4: ["The evolution of Ancient Egyptian - Quantitative and Non- Quantitative Mathematical Linguistics"](https://mathplus.de/research-2/emerging-fields/emerging-field-5-concept-of-change-in-historical-processes/ef5-4/).
 
 Institutions: ZIB(Zuse Institute Berlin) & MATH+(Berlin Mathematics Research Center).
 
@@ -35,7 +35,7 @@ Please enter all the inputs by following the corresponding questions/decriptions
 If the dataset is already a contingency table, then the parameter `isCont` must be given as `True` and the table should be transformed into a panda dataframe (lines 21 -- 31 of `implementation.py`)
 
 ## Supported Data type (if not a contingency table)
-Excel file. In our specific project, datafile contains numerical coding of texts in Égyptien de Tradition, each single data consisting of a ten digits number encoding for the grammatical structure of a sentence (files be found [here](data_link)).
+Excel file. In our specific project, datafile contains numerical coding of texts in Égyptien de Tradition, each single data consisting of a ten digits number encoding for the grammatical structure of a sentence (files can be downloaded [here](https://www.zib.de/ext-data/correspondence/).
 
 You can also use your own python function to clean your dataset instead of the function `Cleaned_Data` in `implementation.py` line 9.
 ## Results
