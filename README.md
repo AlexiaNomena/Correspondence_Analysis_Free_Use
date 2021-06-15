@@ -11,7 +11,7 @@ The method `mcmca.py` can be used for correspondence analysis of dataset that co
 ## Specific Project
 Project Ef5-4: ["The evolution of Ancient Egyptian - Quantitative and Non- Quantitative Mathematical Linguistics"](https://mathplus.de/research-2/emerging-fields/emerging-field-5-concept-of-change-in-historical-processes/ef5-4/).
 
-Institutions: ZIB(Zuse Institute Berlin) & MATH+(Berlin Mathematics Research Center).
+Institutions: ZIB (Zuse Institute Berlin) & MATH+ (Berlin Mathematics Research Center).
 
 ## Software requirements
 python version: 3.7 or +
