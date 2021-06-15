@@ -16,9 +16,11 @@ Institutions: ZIB (Zuse Institute Berlin) & MATH+ (Berlin Mathematics Research C
 ## Software requirements
 python version: 3.7 or +
 
-packages: numpy, pandas, matplotlib, matplotlib.pyplot, matplotlib.backends.backend_pdf , scipy, scipy.stats, seaborn.
+packages: numpy, pandas, matplotlib, matplotlib.pyplot, matplotlib.backends.backend_pdf, scipy, scipy.stats, seaborn.
 
 You can also get all these using conda by creating a new environment with the spec file `myPy3_spec.txt` (for a guidance, click [here](https://conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html))
+## Usage requirement
+See official publication link [here](https://opus4.kobv.de/opus4-zib/frontdoor/index/index/docId/8257)
 
 ## Code Execution
 ### Users with little to no background in python 
