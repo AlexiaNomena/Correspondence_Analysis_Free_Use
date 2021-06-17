@@ -51,10 +51,10 @@ subset_rows = False
 
 
 ##### 
-row_val = "smoking" # appears in figure name
-col_val = "_staff_" # appears in figure name
-ColName = "Staff"  # appears in figure title
-RowName = "Smoking" # appears in figure name
+row_val = "staff" # appears in figure name
+col_val = "_smoking_" # appears in figure name
+ColName = "Smoking"  # appears in figure title
+RowName = "Staff" # appears in figure name
 
 
 dtp = ("str", "str") # datatype for (rows,columns)
