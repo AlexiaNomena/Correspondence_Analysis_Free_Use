@@ -3,7 +3,7 @@ import pandas as pd
 ##### Example for using Contingency Excel files #######
 title = " Smoking tendency amongs staff"
 # load data
-RawData = "Data/smoke.xls" ### You can download this dataset from 
+RawData = "Data/smoke.xls" ### You can download this dataset at http://www.carme-n.org/?sec=data7
 RawData = pd.read_excel(RawData, engine='xlrd') # must be transformed into a panda dataframe
 
 # in this setting, the column category data start at second column of dataset but you have change if needed, e.g., remove [1: ] if columns category names starts from first column of dataset 
