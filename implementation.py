@@ -26,7 +26,7 @@ else:
     try:
         Data = Data
     except:
-        print("You need to provide Data as´ contingency PandaDataframe, see cHelper for example")
+        print("You need to provide Data as a contingency PandaDataframe, see cHelper for example")
     
     try:
         columns_labels = columns_labels
