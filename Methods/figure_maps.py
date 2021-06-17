@@ -94,7 +94,7 @@ def Clustering_rows_cols(Residuals, colormap, labels_vert = None, labels_hor = N
     
     return cMap     
 
-def Clustering_rows_cols_fact(data_rows, data_columns, colormap, labels_vert = None, labels_hor = None): 
+def Clustering_rows_cols_fact(data_rows, data_columns, colormap, labels_vert = None, labels_hor = None, measure = "Angle"): 
     # Clustering using distance from the origin and angle between vectors (for associating differenct categorical variables, i.e. rows vs. cols)
     # This means taking the dot products of the vectors
     """
@@ -106,16 +106,16 @@ def Clustering_rows_cols_fact(data_rows, data_columns, colormap, labels_vert = N
         for j in range(lcol):
             dist[i, j] = data_rows[i, :].dot(data_columns[j,:])
     """
-    dist = data_rows.dot(data_columns.transpose()) # this has another meaning, see Greenacre 1993
-    #dist = Residuals
-    
-    
-    # Normalization
-    #negative = np.where(dist<0)[0][0]
-    #positive = np.where(dist>=0)[0][0]
-    
-    #dist = dist*(negative*(1/np.amin(dist[negative])) + positive*(1/np.amax(dist[positive]))) # divide neg values with max of neg values and pos values with max of pos values
-    dist = dist/np.amax(dist)
+    if measure == "Angle":
+        dist = data_rows.dot(data_columns.transpose()) # this has another meaning, see Greenacre 1993
+        dist = dist/np.amax(dist) # high values means high association
+    else:
+        RC = np.concatenate((data_rows, data_columns), axis=0)
+        FullDist =  scp.spatial.distance.pdist(RC)
+        FullDist = scp.spatial.distance.squareform(FullDist)
+        dist = FullDist[:data_rows.shape[0],data_rows.shape[0]:]
+        dist = np.abs((np.amax(dist) - dist)/np.amax(dist)) # high distance means poor association 
+        
     cMap = sns.clustermap(dist, method = "complete", cmap=colormap, 
                        yticklabels= labels_vert, xticklabels = labels_hor,
                        cbar_pos = (-0.15, 0.1, 0.03, 0.5),
@@ -207,7 +207,7 @@ def Axis_Clust_plots(cl, inds, labels_vert, labels_hor, tick_rotations, What, Lo
                               title = "Clusters "+ What[i]+"\n"+"(%s)"%Loc[i]))
     return Figs    
       
-def Cluster_maps(Coords_dict, form, Label_rows, Label_cols, standard, num_dim, specific_rows_cols = (None, None), axis_separation=True, dtp = ("int", "str")):
+def Cluster_maps(Coords_dict, form, Label_rows, Label_cols, standard, num_dim, specific_rows_cols = (None, None), axis_separation=True, dtp = ("int", "str"), ColName = "X", RowName="Y"):
     xy_rows, xy_cols, Label_rows, Label_cols = Extract_coordinates(Coords_dict, num_dim, Label_rows, Label_cols, specific_rows_cols, dtp = dtp)
     
     if standard:
@@ -260,10 +260,10 @@ def Cluster_maps(Coords_dict, form, Label_rows, Label_cols, standard, num_dim, s
             #Lab_hor = np.concatenate((Label_cols[C1], Label_rows[R1]))
             
             C1_x =  [Clust_plot_rows_cols(xy_rows[R1], xy_cols[C1], clmap, Lab_vert, Lab_hor, (False,True), 
-                                 title = "Clusterof texts and forms "+"\n"+"(Dim 2 upper) \n (fact dot fact)")]
+                                 title = "Cluster of %s and %s "+"\n"+"(Dim 2 upper) \n (fact dot fact)"%(ColName, RowName))]
             
             C1_x_b =  [Clust_plot_rows_cols(xy_rows[R1], Stand_columns[C1], clmap, Lab_vert, Lab_hor, (False,True), 
-                                 title = "Clusterof texts and forms "+"\n"+"(Dim 2 upper) \n (fact dot stand)")]
+                                 title = "Cluster of %s and %s "+"\n"+"(Dim 2 upper) \n (fact dot stand)"%(ColName, RowName))]
             
             
             #RC_cl_lower = np.concatenate((Stand_columns[C2], xy_rows[R2]), axis=0)
@@ -274,10 +274,10 @@ def Cluster_maps(Coords_dict, form, Label_rows, Label_cols, standard, num_dim, s
             #Lab_hor = np.concatenate((Label_cols[C2], Label_rows[R2]))
             
             C2_x = [Clust_plot_rows_cols(xy_rows[R2], xy_cols[C2] , clmap, Lab_vert, Lab_hor, (False,True), 
-                                 title = "Cluster of texts and forms "+"\n"+"(Dim 2 lower) \n (fact dot fact)")]
+                                 title = "Cluster of %s and %s "+"\n"+"(Dim 2 lower) \n (fact dot fact)"%(ColName, RowName))]
     
             C2_x_b = [Clust_plot_rows_cols(xy_rows[R2], Stand_columns[C2] , clmap, Lab_vert, Lab_hor, (False,True), 
-                                 title = "Cluster of texts and forms "+"\n"+"(Dim 2 lower) \n (fact dot stand)")]
+                                 title = "Cluster of %s and %s "+"\n"+"(Dim 2 lower) \n (fact dot stand)"%(ColName, RowName))]
             
             # Clusters sperated by y-axis
             R3 = xy_rows[:, 0] > 0
@@ -304,10 +304,10 @@ def Cluster_maps(Coords_dict, form, Label_rows, Label_cols, standard, num_dim, s
             
             
             C1_y =  [Clust_plot_rows_cols(xy_rows[R3], xy_cols[C3], clmap, Lab_vert, Lab_hor, (False,True), 
-                                 title = "Cluster of texts and forms "+"\n"+"(Dim 1 right) \n (fact dot fact)")]
+                                 title = "Cluster of %s and %s "+"\n"+"(Dim 1 right) \n (fact dot fact)"%(ColName, RowName))]
     
             C1_y_b =  [Clust_plot_rows_cols(xy_rows[R3], Stand_columns[C3], clmap, Lab_vert, Lab_hor, (False,True), 
-                                 title = "Cluster of texts and forms "+"\n"+"(Dim 1 right) \n (fact dot stand)")]
+                                 title = "Cluster of %s and %s "+"\n"+"(Dim 1 right) \n (fact dot stand)"%(ColName, RowName))]
             
             
             #RC_cl_left = np.concatenate((Stand_columns[C4], xy_rows[R4]), axis=0)
@@ -319,10 +319,10 @@ def Cluster_maps(Coords_dict, form, Label_rows, Label_cols, standard, num_dim, s
             #Lab_hor = np.concatenate((Label_cols[C4], Label_rows[R4]))
             
             C2_y = [Clust_plot_rows_cols(xy_rows[R4], xy_cols[C4], clmap, Lab_vert, Lab_hor, (False,True), 
-                                 title = "Cluster of texts and forms "+"\n"+"(Dim 1 left) \n (fact dot fact)")]
+                                 title = "Cluster of %s and %s "+"\n"+"(Dim 1 left) \n (fact dot fact)"%(ColName, RowName))]
             
             C2_y_b = [Clust_plot_rows_cols(xy_rows[R4], Stand_columns[C4], clmap, Lab_vert, Lab_hor, (False,True), 
-                                 title = "Cluster of texts and forms "+"\n"+"(Dim 1 left) \n (fact dot stand)")]
+                                 title = "Cluster of %s and %s"+"\n"+"(Dim 1 left) \n (fact dot stand)"%(ColName, RowName))]
             
             Figs = C1_x + C1_x_b + C2_x + C2_x_b + C1_y + C1_y_b + C2_y + C2_y_b + F_x + F_y
         else:
@@ -336,10 +336,10 @@ def Cluster_maps(Coords_dict, form, Label_rows, Label_cols, standard, num_dim, s
             # full cols
             sns.set(font_scale=0.7) # scale fontsize of labels
             F_1 = [Clust_plot(xy_cols, "Reds_r", Label_cols, Label_cols, ticks_rotate = (False, True), 
-                              title = "Clusters of Text")]
+                              title = "Clusters of %s"%ColName)]
             
             F_2 = [Clust_plot(xy_rows, "Greens_r", Label_rows, Label_rows, ticks_rotate = (False, True), 
-                              title = "Clusters of forms")]
+                              title = "Clusters of %s"%RowName)]
             
             # Rows and Cols together
             
@@ -348,10 +348,10 @@ def Cluster_maps(Coords_dict, form, Label_rows, Label_cols, standard, num_dim, s
             clmap = sns.color_palette("coolwarm")
             
             C_1 =  [Clust_plot_rows_cols(xy_rows, xy_cols, clmap, Label_rows, Label_cols, (False,True), 
-                                 title = "Association between \n texts and forms) \n (fact dot fact)")]
+                                 title = "Association between \n %s and %s) \n (fact dot fact)"%(ColName, RowName))]
     
             C_1_b = [Clust_plot_rows_cols(xy_rows, Stand_columns, clmap, Label_rows, Label_cols, (False,True), 
-                                 title = "Association between \n texts and forms) \n (fact dot stand)")]
+                                 title = "Association between \n %s and %s) \n (fact dot stand)"%(ColName, RowName))]
             
             # Euclidean proximity (removed because misleading)   
             """
@@ -365,28 +365,39 @@ def Cluster_maps(Coords_dict, form, Label_rows, Label_cols, standard, num_dim, s
     
             Figs =  C_1 + C_1_b + F_1 + F_2 #+ C_2
 
+
     else:
         print("MCMCA clusters")
         Figs = []
         
         # Detailed dist separated Text and forms
         
-        fig1 = Clust_plot(xy_cols, "Reds_r", Label_cols, Label_cols, ticks_rotate = (False, True), title = "Cluster Texts")
+        fig1 = Clust_plot(xy_cols, "Reds_r", Label_cols, Label_cols, ticks_rotate = (False, True), title = "Cluster "+ColName)
         
         sns.set(font_scale=0.7) # scale fontsize of labels
 
         thres = 100
         if xy_rows.shape[0] < thres: # one plot
-            fig2 = Clust_plot(xy_rows, "Greens_r", Label_rows, Label_rows, ticks_rotate = (False, True), title = "Cluster "+form)
+            fig2 = Clust_plot(xy_rows, "Greens_r", Label_rows, Label_rows, ticks_rotate = (False, True), title = "Cluster "+RowName)
             
+            """
             RC = np.concatenate((xy_cols, xy_rows), axis=0)
             Lab_vert = np.concatenate((Label_cols, Label_rows))
             Lab_hor = np.concatenate((Label_cols, Label_rows))
             
             Figs.append(Clust_plot(RC, "Blues_r", Lab_vert, Lab_hor, ticks_rotate = (False, True), 
-                              title = "Clusters of \n Text and forms"))
+                              title = "Clusters of \n %s and %s"%(ColName, RowName)))
+            """
+            
+            clmap = "coolwarm"
+            figC = Clustering_rows_cols_fact(xy_rows, xy_cols, clmap, Label_rows, Label_cols, measure = "Euclidean")
+            pl.text(0, 1.75, "Association between \n %s and %s) \n (tensor CA distance)"%(ColName, RowName), fontsize = 16, bbox=dict(boxstyle='round,pad=0.2', fc="white", alpha=1))
+            Figs.append(figC.fig)
+            
             Figs.append(fig1)
             Figs.append(fig2)
+            
+            
         else: # only plot the text cluster
             Figs.append(fig1) 
     

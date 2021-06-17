@@ -3,7 +3,7 @@ from Methods.ca import *         # module for standard correspondence analysis
 from Methods.mcmca import *       # module for markov chain model correspondence analysis
 from Methods.figure_maps import *  # module for clustermaps other maps
 
-from Helper import *  ### import everythin from Helper.py or similar file in which you enter the main parameters
+from cHelper import *  ### import everythin from Helper.py or similar file in which you enter the main parameters
 
 ### Clean data #######
 if not isCont:
@@ -173,7 +173,9 @@ if (Perform_CA is not None)*(fig is not None): # means that the analysis was suc
                                    num_dim = num_dim, 
                                    specific_rows_cols = specific_rows_cols, 
                                    axis_separation = separate_by_axis, # parameter for CA only: if True then separate the clusters by axis, otherwise use the full plane
-                                   dtp = dtp)
+                                   dtp = dtp,
+                                   ColName = ColName,
+                                   RowName = RowName)
     for i in range(len(ClustFigs)):
         pdf.savefig(ClustFigs[i], bbox_inches='tight')
     
