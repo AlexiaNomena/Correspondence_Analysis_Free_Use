@@ -2,6 +2,12 @@ import pandas as pd
 
 ##### Example for using Contingency Excel files #######
 title = " Smoking tendency amongs staff"
+##### 
+row_val = "staff" # appears in figure name
+col_val = "_smoking_" # appears in figure name
+ColName = "Smoking"  # appears in figure title
+RowName = "Staff" # appears in figure name
+
 # load data
 RawData = "Data/smoke.xls" ### You can download this dataset at http://www.carme-n.org/?sec=data7
 RawData = pd.read_excel(RawData, engine='xlrd') # must be transformed into a panda dataframe
@@ -48,13 +54,6 @@ plot_data_table = True  # Figures/Separated/
 
 #### Would you like to study a particular subgroup of categories of the row variables (here forms)? Yes = True, No = False ######
 subset_rows = False 
-
-
-##### 
-row_val = "staff" # appears in figure name
-col_val = "_smoking_" # appears in figure name
-ColName = "Smoking"  # appears in figure title
-RowName = "Staff" # appears in figure name
 
 
 dtp = ("str", "str") # datatype for (rows,columns)
