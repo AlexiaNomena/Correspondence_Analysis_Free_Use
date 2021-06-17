@@ -32,7 +32,12 @@ rows_labels = {"Vb": "Verbal forms",  "Comp":"Complete Code", "SP":"Sentence par
 rows_list = ["Vb", "Comp", "SP", "PI", "PII", "P", "Subj"]
 
 #################### Which specific row variable (here form) do you want to analyse? ##########################################################################
-row_val = "Vb"
+row_val = "Vb"     # appears in figure name
+col_val = "_text_" # appears in figure name
+ColName = "Texts" # appears in figure title
+RowName = rows_labels[row_val] # appears in figure title
+dtp = ("int", "str")
+
 
 #################### Would you like to study a particular subgroup of categories of the row variables? Yes = True, No = False #################################
 subset_rows = False 
@@ -53,7 +58,7 @@ plot_data_table = True  # Figures/Separated/
 ##################### Which method would you like to apply? ###################################################################################################
 # Use "CA" to perform standard Correspondence Analysis
 # Use "MCMCA" to perform Markov Chain Model Correspondence Analysis
-method = "CA"
+method = "MCMCA"
 
 ################# Is your dataset already a contingency table? Yes = True, No = False #######################
 isCont = False
@@ -71,7 +76,7 @@ separate_by_axis = False
 
 ##################### Implementation : no changes required ####################################################################################################
 # Results can be found in Figure/CA or Figure/MCMCA
-from implementation import *    
+from implementation import *    #### line 6 of implementation.py must be set to --> from cHelper import*
 
 
              

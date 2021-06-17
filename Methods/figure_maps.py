@@ -19,14 +19,14 @@ def Extract_specific(Labels, indicator, dtp):
          Labels = np.array(Labels[specific], dtype = dtp)
     return Labels, specific
 
-def Extract_coordinates(Coords_dict, num_dim, Label_rows, Label_cols, special_row_cols):
+def Extract_coordinates(Coords_dict, num_dim, Label_rows, Label_cols, special_row_cols, dtp):
     rows = Coords_dict["Full_rows"]
     cols = Coords_dict["Full_cols"]
     chosenAxes = Coords_dict["chosenAxes"]
     rows[:, chosenAxes] = Coords_dict["rows_in_fig"] # replace the values at the chosen axes because I sometimes flip or scale them in MCMCA the positions of the points
     cols[:, chosenAxes] = Coords_dict["cols_in_fig"]
-    Label_rows, sp_rows = Extract_specific(Label_rows, special_row_cols[0], dtp = "int")
-    Label_cols, sp_cols = Extract_specific(Label_cols, special_row_cols[1], dtp = "str")
+    Label_rows, sp_rows = Extract_specific(Label_rows, special_row_cols[0], dtp = dtp[0])
+    Label_cols, sp_cols = Extract_specific(Label_cols, special_row_cols[1], dtp = dtp[1])
     
     if sp_rows is None:
         xy_rows = rows[:, :num_dim]
@@ -207,8 +207,8 @@ def Axis_Clust_plots(cl, inds, labels_vert, labels_hor, tick_rotations, What, Lo
                               title = "Clusters "+ What[i]+"\n"+"(%s)"%Loc[i]))
     return Figs    
       
-def Cluster_maps(Coords_dict, form, Label_rows, Label_cols, standard, num_dim, specific_rows_cols = (None, None), axis_separation=True):
-    xy_rows, xy_cols, Label_rows, Label_cols = Extract_coordinates(Coords_dict, num_dim, Label_rows, Label_cols, specific_rows_cols)
+def Cluster_maps(Coords_dict, form, Label_rows, Label_cols, standard, num_dim, specific_rows_cols = (None, None), axis_separation=True, dtp = ("int", "str")):
+    xy_rows, xy_cols, Label_rows, Label_cols = Extract_coordinates(Coords_dict, num_dim, Label_rows, Label_cols, specific_rows_cols, dtp = dtp)
     
     if standard:
         print("Standart CA clustering")

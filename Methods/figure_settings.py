@@ -73,7 +73,7 @@ def Annotate(ax, rows_to_Annot, cols_to_Annot, Label_rows, Label_cols, xy_rows, 
     xmin, xmax = ax.get_xlim()
     ymin, ymax = ax.get_ylim()
     
-    if rows_to_Annot is not None:
+    if rows_to_Annot is not None and Label_rows is not None:
         pdist_n = scp.spatial.distance.pdist(xy_rows)
         pdist = scp.spatial.distance.squareform(pdist_n)
         pdist_n[np.isnan(pdist_n)] = 10000000
@@ -97,7 +97,7 @@ def Annotate(ax, rows_to_Annot, cols_to_Annot, Label_rows, Label_cols, xy_rows, 
                 ax = OneAnnotation(ax, Label_rows[j], xy_rows[j, :], "green", xl, yl)
         
     
-    if cols_to_Annot is not None:
+    if cols_to_Annot is not None and Label_cols is not None:
         pdist_n = scp.spatial.distance.pdist(xy_cols)
         pdist = scp.spatial.distance.squareform(pdist_n)
         pdist_n[np.isnan(pdist_n)] = 10000000
@@ -121,7 +121,8 @@ def Annotate(ax, rows_to_Annot, cols_to_Annot, Label_rows, Label_cols, xy_rows, 
 
 
 def Display(Coords_rows, Coords_cols, Inertia, Data, rows_to_Annot, cols_to_Annot, Label_rows, Label_cols, 
-            markers, col, figtitle, outliers, chosenAxes = np.array([0, 1]), show_inertia = True, reverse_axis = False):  
+            markers, col, figtitle, outliers, chosenAxes = np.array([0, 1]), show_inertia = True, reverse_axis = False, ColName = None,
+                                     RowName = None):  
     """
     @brief: display results
     @params Fact: output of function factors
@@ -147,8 +148,8 @@ def Display(Coords_rows, Coords_cols, Inertia, Data, rows_to_Annot, cols_to_Anno
     Cols_Labels = [Label_cols[c] for c in Data.columns]
     ax = Annotate(ax, rows_to_Annot, cols_to_Annot, Label_rows, Cols_Labels, xy_rows, xy_cols, col)
 
-    ax.scatter(xy_rows[:, 0], xy_rows[:, 1], marker = markers[0][0], color = col[0], s = markers[0][1], label= "forms")
-    ax.scatter(xy_cols[:, 0], xy_cols[:, 1], marker = markers[1][0], color = col[1], s = markers[1][1], label= "text")
+    ax.scatter(xy_rows[:, 0], xy_rows[:, 1], marker = markers[0][0], color = col[0], s = markers[0][1], label= RowName)
+    ax.scatter(xy_cols[:, 0], xy_cols[:, 1], marker = markers[1][0], color = col[1], s = markers[1][1], label= ColName)
     ax.legend(loc= (1.05, 0))
     
     

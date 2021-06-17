@@ -1,24 +1,24 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-"""
-Created on Wed Jun 16 14:04:43 2021
-
-@author: araharin
-"""
-
 import pandas as pd
 
-
+##### Example for using Contingency Excel files #######
 title = " Smoking tendency amongs staff"
 # load data
-RawData = "Data/smoke.xls"
-RawData = pd.read_excel(RawData, engine='xlrd')
+RawData = "Data/smoke.xls" ### You can download this dataset from 
+RawData = pd.read_excel(RawData, engine='xlrd') # must be transformed into a panda dataframe
+
+# in this setting, the column category data start at second column of dataset but you have change if needed, e.g., remove [1: ] if columns category names starts from first column of dataset 
+data_dic = {cols:list(RawData[cols]) for cols in RawData.columns[1: ]} # in this example columns categories names starts at the second column index of RawData
+# index = name of row categories, in this case row category name are given as first column of dataset but you can directly enter your row category names as a list, i.e., ["item_1", "item_2", ...]
+row_list = list(RawData[RawData.columns[0]])
+
+#Make the panda dataFrame
+Data = pd.DataFrame(data = data_dic, index = row_list)
 
 sub = ""
 ################# Which method would you like to apply? ###################################
 # Use "CA" to perform Standard Correspondence Analysis
 # Use "MCMCA" to perform MCM Correspondence Analysis
-method = "MCMCA"
+method = "CA"
 
 ################# How many factor dimensions to use on clustermap? #######################
 ### if not given then two factor dimensions will be used 
@@ -41,23 +41,22 @@ separate_by_axis = False
 
 
 ################## Would you like to get the contingency table? ##################################
-plot_contingency = False # Figures/Separated/
+plot_contingency = True # Figures/Separated/
 
 ################## Would you like to get the data table? #########################################
-plot_data_table = False  # Figures/Separated/
+plot_data_table = True  # Figures/Separated/
 
 #### Would you like to study a particular subgroup of categories of the row variables (here forms)? Yes = True, No = False ######
 subset_rows = False 
 
 
-row_val = "smoking"
-col_val = "_staff_"
-ColName = "Staff"
-RowName = "Smoking"
+##### 
+row_val = "smoking" # appears in figure name
+col_val = "_staff_" # appears in figure name
+ColName = "Staff"  # appears in figure title
+RowName = "Smoking" # appears in figure name
 
-precision = 80
 
-compute_rows = False
-dtp = ("str", "str")
+dtp = ("str", "str") # datatype for (rows,columns)
 
 from implementation import *   #### line 6 of implementation.py must be set to --> from cHelper import *

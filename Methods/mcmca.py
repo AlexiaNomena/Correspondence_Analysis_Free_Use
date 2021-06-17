@@ -107,7 +107,8 @@ def factors(Data, row_vals, col_vals, missing, isCont):
 
 def MCMCA(Data, row_vals, col_vals, rows_to_Annot, cols_to_Annot, Label_rows, Label_cols, cols_dating = None, table = True, 
           markers = [("o", 50), ("o",50)], col = ["grey", "red"], figtitle="None", outliers = (True, True),
-           missing = (False, False), reverse_axis = False, p_val = 0.01, isCont = False):    
+           missing = (False, False), reverse_axis = False, p_val = 0.01, isCont = False, ColName = None,
+                                     RowName = None):    
     '''
     @brief: perform correspondence analysis and return summarry table and figure
     @params Data          : panda dataframe (without missing elements or NANs)
@@ -160,11 +161,21 @@ def MCMCA(Data, row_vals, col_vals, rows_to_Annot, cols_to_Annot, Label_rows, La
             Coords_rows = Fact["Coord_rows"]
             Coords_cols = Fact["Coord_columns"]
             Inertia = Fact["Inertia"]
+            
+            if rows_to_Annot is not None:
+                if len(rows_to_Annot)>len(Cont.index): 
+                    annot_rows = Cont.index
+                    rows_to_Annot = []
+                    for s in range(len(annot_rows)):
+                        ind = np.where(Label_rows == annot_rows[s])[0]
+                        if len(ind) >= 1: # row should appear only one time
+                            rows_to_Annot = rows_to_Annot + list(ind)
                 
             fig, xy_rows, xy_cols = Display(Coords_rows, Coords_cols, Inertia, Data, rows_to_Annot, cols_to_Annot, Label_rows, Label_cols, 
                                   markers, col, figtitle, outliers,
                                   chosenAxes = np.array([0, 1]), 
-                                  show_inertia = False, reverse_axis = reverse_axis)
+                                  show_inertia = False, reverse_axis = reverse_axis, ColName = ColName,
+                                     RowName = RowName)
                         
             # Columns labels table
             if cols_dating is not None:

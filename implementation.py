@@ -3,7 +3,8 @@ from Methods.ca import *         # module for standard correspondence analysis
 from Methods.mcmca import *       # module for markov chain model correspondence analysis
 from Methods.figure_maps import *  # module for clustermaps other maps
 
-from Helper import *
+from Helper import *  ### import everythin from Helper.py or similar file in which you enter the main parameters
+
 ### Clean data #######
 if not isCont:
     Data = Cleaned_Data(RawData, sheet_name_list, columns_list, form = row_val, form_labels = rows_labels)
@@ -18,17 +19,32 @@ if not isCont:
     @params form:             qualitative variables in the rows, values: "SP", "PI", "PII", "Vb", "Subj", "Comp"
     @params form_labels:      dictionary for the labels of te forms:                 {form:string, ....}
     '''
+    AllRows = Row_Vals(Data)  # take all row elements of the dataset / if dataset is not a contigency dataframe
+    rows_annot_labs = Row_Vals(Data)
 else:
-    isCont = isCont
     ### You can directly enter your data as a contingency table, howvever you need to check if the row/columns category names are consistent ###
-    import pandas as pd 
-    # in this setting, the column category data start at second column of dataset but you have change if needed, e.g., remove [1: ] if columns category names starts from first column of dataset 
-    data_dic = {cols:list(RawData[cols]) for cols in RawData.columns[1: ]}
-    # index = name of row categories, in this case row category name are given as first column of dataset but you can directly enter your row category names as a list, i.e., ["item_1", "item_2", ...]
-    row_list = list(RawData[RawData.columns[0]])
+    try:
+        Data = Data
+    except:
+        print("You need to provide Data as´ contingency PandaDataframe, see cHelper for example")
     
-    #Make the panda dataFrame
-    Data = pd.DataFrame(data = data_dic, index = row_list) 
+    try:
+        columns_labels = columns_labels
+        columns_list = columns_list
+        columns_dating = columns_dating
+        rows_labels = rows_labels
+        rows_labels[row_val] = row_val
+        annot_rows = annot_rows
+    except: # in case you do not succeed to enter those variables
+        columns_labels = {cols:cols for cols in Data.columns}
+        columns_list = Data.columns
+        columns_dating = None
+        rows_labels = {row:row for row in row_list}
+        rows_labels[row_val] = row_val
+        annot_rows = row_list
+    
+    AllRows = np.array(row_list)
+    rows_annot_labs = row_list
 
     
 # Throw analysis figs in one pdf, specify the location and name of figure, the name of the row variabls is appended to it to differentiate the filename
@@ -37,15 +53,15 @@ if method == "CA":# for CA
     method = CA
     if separate_by_axis:
         try:
-            pdf= PdfPages("Figures/CA/"+sub+"CA_text_"+row_val+"_F1_to_F%d_separated.pdf"%num_dim_given)
+            pdf= PdfPages("Figures/CA/"+sub+"CA"+col_val+row_val+"_F1_to_F%d_separated.pdf"%num_dim_given)
         except:
-            pdf= PdfPages("Figures/CA/"+sub+"CA_text_"+row_val+"_F1_to_F2_separated.pdf")
+            pdf= PdfPages("Figures/CA/"+sub+"CA"+col_val+row_val+"_F1_to_F2_separated.pdf")
             
     else:
         try:
-            pdf= PdfPages("Figures/CA/"+sub+"CA_text_"+row_val+"_F1_to_F%d_all.pdf"%num_dim_given)
+            pdf= PdfPages("Figures/CA/"+sub+"CA"+col_val+row_val+"_F1_to_F%d_all.pdf"%num_dim_given)
         except:
-            pdf= PdfPages("Figures/CA/"+sub+"CA_text_"+row_val+"_F1_to_F2_all.pdf")
+            pdf= PdfPages("Figures/CA/"+sub+"CA"+col_val+row_val+"_F1_to_F2_all.pdf")
             
     standard = True
     
@@ -56,7 +72,7 @@ if method == "CA":# for CA
 
 elif method == "MCMCA": # for MCMCA
     method = MCMCA
-    pdf= PdfPages("Figures/MCMCA/"+sub+"MCMCA_text_"+row_val+".pdf")
+    pdf= PdfPages("Figures/MCMCA/"+sub+"MCMCA"+col_val+row_val+".pdf")
     standard = False
     # specify which variables to show on the clustermap  # must be lists e.g. (np.arange(100, 120, dtype = int), None)
     specify_rows = None
@@ -78,16 +94,15 @@ except:
 
 # Throw other tables in one pdf
 if plot_contingency:     
-    pdf2 = PdfPages("Figures/"+"Contingency_text_%s.pdf"%row_val)
+    pdf2 = PdfPages("Figures/"+"Contingency"+col_val+row_val+".pdf")
 
 if plot_data_table:
-    pdf3 = PdfPages("Figures/"+"Data_text_%s.pdf"%row_val)
+    pdf3 = PdfPages("Figures/"+"Data_t"+col_val+row_val+".pdf")
     
-# Row_Vals(Data) gives all the codes for the forms existing in the rows of the dataset
 # Data.columns gives all the texts existing in the columns of the dataset 
 AllCols = Data.columns
-AllRows = Row_Vals(Data) # take all row elements of the dataset
 
+   
 # in case one only study a subset of the code
 if subset_rows:
     AllRows = np.array(rows_to_study)
@@ -108,25 +123,28 @@ try:
     p_value = p_value
 except:
     p_value = 1 # we do not filter by p_value
-    
+
+
+figtitle = ColName +" vs. " + RowName    
 ######### Analysis ##########        
 Perform_CA, fig, contfig = method(Data, 
                 row_vals = AllRows,   # List of form items to consider in the analysis (choose from codes of the forms)
                 col_vals = AllCols,      # List of Text items to consider in the analysis (choose from texts_list)
-                rows_to_Annot = rows_annot,         # indexes of the form items to annotate, if None then no annotation
-                cols_to_Annot = np.arange(0,len(AllCols),  dtype=int), # indexes of the text items to annotate
-                Label_rows = Row_Vals(Data),  # list of labels respectivelly corresponding to the form items that is in row_vals
-                Label_cols = columns_labels,     # dictionary of labels respectivelly corresponding to the text items that are in col_vals
-                cols_dating = columns_dating,    # dictionary of dates respectivelly corresponding to the text items that are in col_vals
+                rows_to_Annot = rows_annot,      # indexes of the form items to annotate, if None then no annotation (None if none)
+                cols_to_Annot = np.arange(0,len(AllCols),  dtype=int), # indexes of the text items to annotate (None if none)
+                Label_rows = rows_annot_labs,  # list of labels respectivelly corresponding to the row items (None if none)
+                Label_cols = columns_labels,     # dictionary of labels respectivelly corresponding to the column items that (None if none)
+                cols_dating = columns_dating,    # dictionary of dates respectivelly corresponding to the column items (None if none)
                 table = True,                 # Include summary table in the figure or not = True or False
                 markers =[(".",10), ("+",30)],# pyplot markertypes, markersize: [(marker for the form items, size), (marker for the text items, size)] 
                 col = ["grey", "red"],        # pyplot colortypes : [color for the form items, color for the text items]                  
-                figtitle = "Text vs. " + rows_labels[row_val], # The title of the figure in the analysis
+                figtitle = figtitle, # The title of the figure in the analysis
                 outliers = (True, True), # to show (True) or not to show (False) the outliers of (row values, col values)
                 p_val = p_value, # default is 0.01
                 reverse_axis = False,    # True if reverse the order of the axis coordinates                      
-                isCont = isCont          # input boolean parameter for: Is your data already a contingency table? 
-                )
+                isCont = isCont,          # input boolean parameter for: Is your data already a contingency table? 
+                ColName = ColName,
+                RowName = RowName)
 
 
 #save contingency table
@@ -149,13 +167,13 @@ if (Perform_CA is not None)*(fig is not None): # means that the analysis was suc
     # Plot clustermaps to see the correspondence within rows and columns
     ClustFigs = Cluster_maps(Perform_CA, 
                                    rows_labels[row_val], 
-                                   Label_rows = Row_Vals(Data), 
+                                   Label_rows = rows_annot_labs, 
                                    Label_cols = [columns_labels[c] for c in Data.columns], 
                                    standard = standard,
                                    num_dim = num_dim, 
                                    specific_rows_cols = specific_rows_cols, 
-                                   axis_separation = separate_by_axis # parameter for CA only: if True then separate the clusters by axis, otherwise use the full plane
-                                   )
+                                   axis_separation = separate_by_axis, # parameter for CA only: if True then separate the clusters by axis, otherwise use the full plane
+                                   dtp = dtp)
     for i in range(len(ClustFigs)):
         pdf.savefig(ClustFigs[i], bbox_inches='tight')
     
