@@ -128,10 +128,10 @@ except:
 figtitle = ColName +" vs. " + RowName    
 ######### Analysis ##########        
 Perform_CA, fig, contfig = method(Data, 
-                row_vals = AllRows,   # List of form items to consider in the analysis (choose from codes of the forms)
-                col_vals = AllCols,      # List of Text items to consider in the analysis (choose from texts_list)
+                row_vals = AllRows,   # List of row items to consider in the analysis 
+                col_vals = AllCols,      # List of column items to consider in the analysis (choose from texts_list)
                 rows_to_Annot = rows_annot,      # indexes of the form items to annotate, if None then no annotation (None if none)
-                cols_to_Annot = np.arange(0,len(AllCols),  dtype=int), # indexes of the text items to annotate (None if none)
+                cols_to_Annot = np.arange(0,len(AllCols),  dtype=int), # indexes of the column items to annotate (None if none)
                 Label_rows = rows_annot_labs,  # list of labels respectivelly corresponding to the row items (None if none)
                 Label_cols = columns_labels,     # dictionary of labels respectivelly corresponding to the column items that (None if none)
                 cols_dating = columns_dating,    # dictionary of dates respectivelly corresponding to the column items (None if none)
