@@ -11,7 +11,7 @@ data_dic = {cols:list(RawData[cols]) for cols in RawData.columns[1: ]} # in this
 # index = name of row categories, in this case row category name are given as first column of dataset but you can directly enter your row category names as a list, i.e., ["item_1", "item_2", ...]
 row_list = list(RawData[RawData.columns[0]])
 
-#Make the panda dataFrame
+# Recreate the panda dataFrame
 Data = pd.DataFrame(data = data_dic, index = row_list)
 
 sub = ""
