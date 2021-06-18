@@ -24,7 +24,7 @@ sub = ""
 ################# Which method would you like to apply? ###################################
 # Use "CA" to perform Standard Correspondence Analysis
 # Use "MCMCA" to perform MCM Correspondence Analysis
-method = "MCMCA"
+method = "CA"
 
 ################# How many factor dimensions to use on clustermap? #######################
 ### if not given then two factor dimensions will be used 

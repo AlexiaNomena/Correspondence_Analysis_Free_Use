@@ -3,7 +3,7 @@ from Methods.ca import *         # module for standard correspondence analysis
 from Methods.mcmca import *       # module for markov chain model correspondence analysis
 from Methods.figure_maps import *  # module for clustermaps other maps
 
-from cHelper import *  ### import everythin from Helper.py or similar file in which you enter the main parameters
+from Helper import *  ### import everythin from Helper.py or similar file in which you enter the main parameters
 
 ### Clean data #######
 if not isCont:

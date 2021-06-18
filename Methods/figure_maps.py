@@ -211,7 +211,7 @@ def Cluster_maps(Coords_dict, form, Label_rows, Label_cols, standard, num_dim, s
     xy_rows, xy_cols, Label_rows, Label_cols = Extract_coordinates(Coords_dict, num_dim, Label_rows, Label_cols, specific_rows_cols, dtp = dtp)
     
     if standard:
-        print("Standart CA clustering")
+        print("Standard CA clustering")
         """
         In the case of standard CA, the axis must separate the clusters,
         Subclusters can then exist within the main clusters
