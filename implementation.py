@@ -156,7 +156,7 @@ if plot_data_table:
     fig2= pl.figure(figsize=(10,10))
     ax3 = fig2.add_subplot(211)
     pd.plotting.table(ax3, Data, loc="upper center", fontsize = 12)
-    pl.title("Data table for text vs. "+rows_labels[row_val])
+    pl.title("Data table for "+ figtitle)
     ax3.axis("off")
     pdf3.savefig(fig2, bbox_inches = 'tight')
 
