@@ -23,8 +23,8 @@ def Extract_coordinates(Coords_dict, num_dim, Label_rows, Label_cols, special_ro
     rows = Coords_dict["Full_rows"]
     cols = Coords_dict["Full_cols"]
     chosenAxes = Coords_dict["chosenAxes"]
-    rows[:, chosenAxes] = Coords_dict["rows_in_fig"] # replace the values at the chosen axes because I sometimes flip or scale them in MCMCA the positions of the points
-    cols[:, chosenAxes] = Coords_dict["cols_in_fig"]
+    #rows[:, chosenAxes] = Coords_dict["rows_in_fig"] # replace the values at the chosen axes because I sometimes flip or scale them in MCMCA the positions of the points
+    #cols[:, chosenAxes] = Coords_dict["cols_in_fig"]
     Label_rows, sp_rows = Extract_specific(Label_rows, special_row_cols[0], dtp = dtp[0])
     Label_cols, sp_cols = Extract_specific(Label_cols, special_row_cols[1], dtp = dtp[1])
     
