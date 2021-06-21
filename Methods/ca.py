@@ -253,9 +253,9 @@ def CA(Data, row_vals, col_vals, rows_to_Annot, cols_to_Annot, Label_rows, Label
                 return None, None, fig2
             
             else:
-                Coords_rows = Fact["Factors_rows"]
-                Coords_cols = Fact["Factors_columns"]
-                Inertia = Fact["Inertia"]
+                Coords_rows = Fact["Factors_rows"].copy()
+                Coords_cols = Fact["Factors_columns"].copy()
+                Inertia = Fact["Inertia"].copy()
                 
                 if rows_to_Annot is not None:
                     if len(rows_to_Annot)>len(Cont.index): 
@@ -269,7 +269,7 @@ def CA(Data, row_vals, col_vals, rows_to_Annot, cols_to_Annot, Label_rows, Label
                 fig, xy_rows, xy_cols = Display(Coords_rows, Coords_cols, Inertia, Data, rows_to_Annot, cols_to_Annot, Label_rows, Label_cols, 
                                   markers, col, figtitle, outliers,
                                   chosenAxes = chosenAxes, 
-                                  show_inertia = True, reverse_axis = True, ColName = ColName,
+                                  show_inertia = True, reverse_axis = reverse_axis, ColName = ColName,
                                      RowName = RowName)
                 
                 # Print simple summary table

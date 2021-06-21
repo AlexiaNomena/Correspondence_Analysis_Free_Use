@@ -108,7 +108,11 @@ def Clustering_rows_cols_fact(data_rows, data_columns, colormap, labels_vert = N
     """
     if measure == "Angle":
         dist = data_rows.dot(data_columns.transpose()) # this has another meaning, see Greenacre 1993
-        dist = dist/np.amax(dist) # high values means high association
+        
+        if np.sum(dist>0) != 0:
+            dist = dist/np.amax(dist[dist>0]) # high values means high association
+        else:
+            dist = dist/np.amax(np.abs(dist))
     else:
         RC = np.concatenate((data_rows, data_columns), axis=0)
         FullDist =  scp.spatial.distance.pdist(RC)
@@ -123,6 +127,7 @@ def Clustering_rows_cols_fact(data_rows, data_columns, colormap, labels_vert = N
                        )
     cax = cMap.cax
     #cax.set_yticks((0, 0.5, 1))
+    
     cax.set_yticklabels(("none", "weak", "mid", "high", "high++"))
     
     return cMap
