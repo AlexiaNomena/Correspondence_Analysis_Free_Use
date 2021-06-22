@@ -151,7 +151,6 @@ def Display(Coords_rows, Coords_cols, Inertia, Data, rows_to_Annot, cols_to_Anno
         dim1, dim2 = Inertia[chosenAxes]
         xy_rows = Coords_rows[:, chosenAxes] 
         xy_cols = Coords_cols[:, chosenAxes]
-        
     # annotate points
     Cols_Labels = [Label_cols[c] for c in Data.columns]
     ax = Annotate(ax, rows_to_Annot, cols_to_Annot, Label_rows, Cols_Labels, xy_rows, xy_cols, col)

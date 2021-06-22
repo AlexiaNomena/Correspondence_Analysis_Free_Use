@@ -20,11 +20,12 @@ def Extract_specific(Labels, indicator, dtp):
     return Labels, specific
 
 def Extract_coordinates(Coords_dict, num_dim, Label_rows, Label_cols, special_row_cols, dtp):
-    rows = Coords_dict["Full_rows"]
-    cols = Coords_dict["Full_cols"]
-    chosenAxes = Coords_dict["chosenAxes"]
-    #rows[:, chosenAxes] = Coords_dict["rows_in_fig"] # replace the values at the chosen axes because I sometimes flip or scale them in MCMCA the positions of the points
-    #cols[:, chosenAxes] = Coords_dict["cols_in_fig"]
+    rows = Coords_dict["Full_results"]["Factors_rows"].copy()
+    cols = Coords_dict["Full_results"]["Factors_columns"].copy()
+    sorted_Axes = Coords_dict["sorted_Axes"]
+    if sorted_Axes is not None:
+        rows = rows[:, sorted_Axes]
+        cols = cols[:, sorted_Axes]
     Label_rows, sp_rows = Extract_specific(Label_rows, special_row_cols[0], dtp = dtp[0])
     Label_cols, sp_cols = Extract_specific(Label_cols, special_row_cols[1], dtp = dtp[1])
     
@@ -222,8 +223,11 @@ def Cluster_maps(Coords_dict, form, Label_rows, Label_cols, standard, num_dim, s
         Subclusters can then exist within the main clusters
         """
         
-        #Residuals = Coords_dict["Residuals"]
-        StandC = Coords_dict["Full_result"]["Coords_columns"]
+        #Residuals = Coords_dict["Full_result"]["Residuals"]
+        StandC = Coords_dict["Full_results"]["Coords_columns"].copy()
+        sorted_Axes = Coords_dict["sorted_Axes"]
+        if sorted_Axes is not None:
+            StandC = StandC[:, sorted_Axes]
         
         if specific_rows_cols[1] is None:
             Stand_columns = StandC[:, :num_dim]

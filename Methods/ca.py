@@ -106,10 +106,10 @@ def factors(Data, row_vals, col_vals, missing, isCont):
         
         # column factors/principal coordinates:contribution of the colum profiles on each axis corresponding to the singular values
         Factors_cols = Dc.dot(V.dot(Sigma))
-        
         return {"Coords_rows":coord_rows, "Coords_columns":coord_cols, "Factors_rows":Factors_rows, "Factors_columns": Factors_cols, "Inertia":Svalues**2, 
                     "Num_Obs":Num_Obs, "Deg_Freedm":(len(marj_rows)-1)*(len(marj_columns)-1), "Contingency":ContDataFrame, 
                     "marj_rows": marj_rows, "marj_cols":marj_columns, "Residuals":D}
+        
     except:
         print("Maybe SVD did not converge, there might be some NaNs in the Deviation matrix")
         print("Check that there are no rows or columns with no information in the Data table")
@@ -178,16 +178,17 @@ def WhichAxes(Fact, missing = (False, False)):
         Coords_rows = Fact["Factors_rows"]
         contributions_nans = Fact["marj_rows"][-1]*Coords_rows[-1, :]**2/np.sum(Inertia)
         sort_contr = np.argsort(contributions_nans)[::-1] # sort in descending order
-        test = contributions_nans[sort_contr] <= 0.5 
+        test = contributions_nans[sort_contr] <= 0.5 # only take Nans contributions that are less than 0.5
         
         chosenAxes = sort_contr[test][:2]
         
     else:
         indexes = np.arange(0, len(Inertia), 1., dtype = int )
         test = (indexes == 0) + (indexes == 1)
+        sort_contr = indexes.copy() # inertias are already sorted in descending order by contributions
         chosenAxes = indexes[test]
     
-    return contributions_nans, chosenAxes 
+    return contributions_nans, chosenAxes, sort_contr
  
 
 def CA(Data, row_vals, col_vals, rows_to_Annot, cols_to_Annot, Label_rows, Label_cols, cols_dating = None, table = True, 
@@ -234,8 +235,8 @@ def CA(Data, row_vals, col_vals, rows_to_Annot, cols_to_Annot, Label_rows, Label
 
         else:
             # Simple summary, contingency, and p_values
-            contributions_nans, chosenAxes = WhichAxes(Fact, missing)
-            Frame1, Frame2, Cont, p_value = CA_Summary(Fact, missing, contributions_nans) 
+            contributions_nans, chosenAxes, sortedAxes = WhichAxes(Fact, missing)
+            Frame1, Frame2, Cont, p_value = CA_Summary(Fact, missing, contributions_nans)
             
             Frame3 = Cont.copy()        
             fig2=pl.figure(figsize=(10,10))
@@ -297,7 +298,7 @@ def CA(Data, row_vals, col_vals, rows_to_Annot, cols_to_Annot, Label_rows, Label
                 
                             
                 
-                return {"rows_in_fig":xy_rows, "cols_in_fig":xy_cols, "Full_rows":Coords_rows, "Full_cols":Coords_cols, "chosenAxes":chosenAxes, "Residuals":Fact["Residuals"], "Full_result":Fact}, fig, fig2
+                return {"rows_in_fig":xy_rows, "cols_in_fig":xy_cols, "chosenAxes":chosenAxes, "sorted_Axes":sortedAxes, "Full_results":Fact}, fig, fig2
            
 
         

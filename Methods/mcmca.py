@@ -96,7 +96,7 @@ def factors(Data, row_vals, col_vals, missing, isCont):
         # Standard coordinates: coordinates of columns on the principal axes
         coord_cols =  Evectors[:len(ContDataFrame.columns), remove:]#*np.sign(Evectors[np.newaxis, 0, remove:])
         
-        return {"Coord_rows":coord_rows, "Coord_columns":coord_cols, 
+        return {"Factors_rows":coord_rows, "Factors_columns":coord_cols, 
                     "Num_Obs":Num_Obs, "Contingency":ContDataFrame, "Inertia": Evalues}
     except:
         print("Maybe eignevalue computation did not converge, there might be some NaNs in the Stochastic matrix")
@@ -158,9 +158,9 @@ def MCMCA(Data, row_vals, col_vals, rows_to_Annot, cols_to_Annot, Label_rows, La
         
         else:
             # plot 2 components
-            Coords_rows = Fact["Coord_rows"]
-            Coords_cols = Fact["Coord_columns"]
-            Inertia = Fact["Inertia"]
+            Coords_rows = Fact["Factors_rows"].copy()
+            Coords_cols = Fact["Factors_columns"].copy()
+            Inertia = Fact["Inertia"].copy()
             
             if rows_to_Annot is not None:
                 if len(rows_to_Annot)>len(Cont.index): 
@@ -194,7 +194,7 @@ def MCMCA(Data, row_vals, col_vals, rows_to_Annot, cols_to_Annot, Label_rows, La
         
             
                 
-            return {"rows_in_fig":xy_rows, "cols_in_fig":xy_cols, "Full_rows":Coords_rows, "Full_cols":Coords_cols, "chosenAxes":np.array([0, 1])}, fig, fig2
+            return {"rows_in_fig":xy_rows, "cols_in_fig":xy_cols, "Full_results":Fact, "chosenAxes":np.array([0, 1]), "sorted_Axes":None}, fig, fig2
     
 
         
