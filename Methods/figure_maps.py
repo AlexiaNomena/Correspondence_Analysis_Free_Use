@@ -213,7 +213,7 @@ def Axis_Clust_plots(cl, inds, labels_vert, labels_hor, tick_rotations, What, Lo
                               title = "Clusters "+ What[i]+"\n"+"(%s)"%Loc[i]))
     return Figs    
       
-def Cluster_maps(Coords_dict, form, Label_rows, Label_cols, standard, num_dim, specific_rows_cols = (None, None), axis_separation=True, dtp = ("int", "str"), ColName = "X", RowName="Y"):
+def Cluster_maps(Coords_dict, form, Label_rows, Label_cols, standard, num_dim, specific_rows_cols = (None, None), axis_separation=False, dtp = ("int", "str"), ColName = "X", RowName="Y"):
     xy_rows, xy_cols, Label_rows, Label_cols = Extract_coordinates(Coords_dict, num_dim, Label_rows, Label_cols, specific_rows_cols, dtp = dtp)
     
     if standard:
