@@ -58,7 +58,7 @@ plot_data_table = True  # Figures/Separated/
 ##################### Which method would you like to apply? ###################################################################################################
 # Use "CA" to perform standard Correspondence Analysis
 # Use "MCMCA" to perform Markov Chain Model Correspondence Analysis
-method = "MCMCA"
+method = "CA"
 
 ################# Is your dataset already a contingency table? Yes = True, No = False #######################
 isCont = False
@@ -72,7 +72,7 @@ p_value = 0.05 # must be between 0 and 1, if not given then result is not filter
 num_dim_given = 5
 
 ################# Only for CA method, would you like a CA clustermap separated by axis ##############################
-separate_by_axis = False
+separate_by_axis = True
 
 ##################### Implementation : no changes required ####################################################################################################
 # Results can be found in Figure/CA or Figure/MCMCA
