@@ -223,7 +223,7 @@ def Cluster_maps(Coords_dict, form, Label_rows, Label_cols, standard, num_dim, s
         Subclusters can then exist within the main clusters
         """
         
-        #Residuals = Coords_dict["Full_result"]["Residuals"]
+        #Residuals = Coords_dict["Full_results"]["Residuals"]
         StandC = Coords_dict["Full_results"]["Coords_columns"].copy()
         sorted_Axes = Coords_dict["sorted_Axes"]
         if sorted_Axes is not None:
