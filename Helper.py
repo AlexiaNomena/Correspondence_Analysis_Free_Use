@@ -72,7 +72,7 @@ p_value = 0.05 # must be between 0 and 1, if not given then result is not filter
 num_dim_given = 5
 
 ################# Only for CA method, would you like a CA clustermap separated by axis ##############################
-separate_by_axis = True
+separate_by_axis = False # if True, this does not work for the parts of the axis in which there is only one category in it.
 
 ##################### Implementation : no changes required ####################################################################################################
 # Results can be found in Figure/CA or Figure/MCMCA
