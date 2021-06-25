@@ -50,10 +50,10 @@ rows_to_study = [322, 256, 378, 690, 999]  ### list will only be used if subset_
 annot_rows = [322, 256] # example 322 and 256 for verbs, add more if needed
 
 ################## Would you like to get the contingency table? #######################################
-plot_contingency = True  # Figures/Separated/
+plot_contingency = True  # Figures/
 
 ################## Would you like to get the data table? ##############################################
-plot_data_table = True  # Figures/Separated/
+plot_data_table = True  # Figures/
 
 ##################### Which method would you like to apply? ###################################################################################################
 # Use "CA" to perform standard Correspondence Analysis
