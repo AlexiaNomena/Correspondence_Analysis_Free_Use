@@ -145,6 +145,7 @@ def Display(Coords_rows, Coords_cols, Inertia, Data, rows_to_Annot, cols_to_Anno
     
     if reverse_axis:
         dim1, dim2 = Inertia[chosenAxes][::-1]
+        chosenAxes = chosenAxes[::-1]
         xy_rows = Coords_rows[:, chosenAxes][:, ::-1] # [:, ::-1] reverse the order of the axis coordinates if necessary
         xy_cols = Coords_cols[:, chosenAxes][:, ::-1]
     else:
@@ -167,8 +168,8 @@ def Display(Coords_rows, Coords_cols, Inertia, Data, rows_to_Annot, cols_to_Anno
         pl.xlabel("Dim %d"%(chosenAxes[0]+1,), fontsize = 14)
         pl.ylabel("Dim %d"%(chosenAxes[1]+1,), fontsize = 14)
     else:
-        pl.xlabel("Dim 1", fontsize = 14)
-        pl.ylabel("Dim 2", fontsize = 14)
+        pl.xlabel("Dim %d"%(chosenAxes[0]+1,), fontsize = 14)
+        pl.ylabel("Dim %d"%(chosenAxes[1]+1,), fontsize = 14)
         
     # draw axis separation and limits depending on oulier parameters
     ax = Separation_axis(pl, ax, xy_rows, xy_cols, outliers)
