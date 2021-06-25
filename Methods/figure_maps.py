@@ -108,7 +108,7 @@ def Clustering_rows_cols_fact(data_rows, data_columns, colormap, labels_vert = N
             dist[i, j] = data_rows[i, :].dot(data_columns[j,:])
     """
     if measure == "Angle":
-        dist = data_rows.dot(data_columns.transpose()) # this is the o/e ratio - 1
+        dist = data_rows.dot(data_columns.transpose()) # this is the o/e ratio - 1 or o/e - 1 ratio scaled by the singular values
         
         if np.sum(dist>0) != 0:
             dist = dist/np.amax(dist[dist>0]) # high values means high association
