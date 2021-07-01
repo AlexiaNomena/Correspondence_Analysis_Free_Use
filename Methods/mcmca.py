@@ -174,7 +174,7 @@ def MCMCA(Data, row_vals, col_vals, rows_to_Annot, cols_to_Annot, Label_rows, La
             fig, xy_rows, xy_cols = Display(Coords_rows, Coords_cols, Inertia, Data, rows_to_Annot, cols_to_Annot, Label_rows, Label_cols, 
                                   markers, col, figtitle, outliers,
                                   chosenAxes = np.array([0, 1]), 
-                                  show_inertia = False, reverse_axis = reverse_axis, ColName = ColName,
+                                  show_inertia = False, ColName = ColName,
                                      RowName = RowName)
                         
             # Columns labels table

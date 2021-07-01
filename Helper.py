@@ -58,7 +58,7 @@ plot_data_table = True  # Figures/
 ##################### Which method would you like to apply? ###################################################################################################
 # Use "CA" to perform standard Correspondence Analysis
 # Use "MCMCA" to perform Markov Chain Model Correspondence Analysis
-method = "CA"
+method = "MCMCA"
 
 ################# Is your dataset already a contingency table? Yes = True, No = False #######################
 isCont = False

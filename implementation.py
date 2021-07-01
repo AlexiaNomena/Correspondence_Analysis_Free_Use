@@ -130,7 +130,7 @@ figtitle = ColName +" vs. " + RowName
 Perform_CA, fig, contfig = method(Data, 
                 row_vals = AllRows,   # List of row items to consider in the analysis 
                 col_vals = AllCols,      # List of column items to consider in the analysis (choose from texts_list)
-                rows_to_Annot = rows_annot,      # indexes of the form items to annotate, if None then no annotation (None if none)
+                rows_to_Annot = rows_annot,      # indexes of the form items to annotate, if None then no annotation (None if none), np.arange(0,len(AllRows),  dtype=int) if all
                 cols_to_Annot = np.arange(0,len(AllCols),  dtype=int), # indexes of the column items to annotate (None if none)
                 Label_rows = rows_annot_labs,  # list of labels respectivelly corresponding to the row items (None if none)
                 Label_cols = columns_labels,     # dictionary of labels respectivelly corresponding to the column items that (None if none)
@@ -141,7 +141,6 @@ Perform_CA, fig, contfig = method(Data,
                 figtitle = figtitle, # The title of the figure in the analysis
                 outliers = (True, True), # to show (True) or not to show (False) the outliers of (row values, col values)
                 p_val = p_value, # default is 0.01
-                reverse_axis = True,    # True if reverse the order of the axis coordinates                      
                 isCont = isCont,          # input boolean parameter for: Is your data already a contingency table? 
                 ColName = ColName,
                 RowName = RowName)

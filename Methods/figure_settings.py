@@ -142,16 +142,11 @@ def Display(Coords_rows, Coords_cols, Inertia, Data, rows_to_Annot, cols_to_Anno
     PreFig()
     fig = pl.figure(figsize=(18,10))
     ax = fig.add_subplot(211)
+
+    dim1, dim2 = Inertia[chosenAxes]
+    xy_rows = Coords_rows[:, chosenAxes] 
+    xy_cols = Coords_cols[:, chosenAxes]
     
-    if reverse_axis:
-        dim1, dim2 = Inertia[chosenAxes][::-1]
-        chosenAxes = chosenAxes[::-1]
-        xy_rows = Coords_rows[:, chosenAxes][:, ::-1] # [:, ::-1] reverse the order of the axis coordinates if necessary
-        xy_cols = Coords_cols[:, chosenAxes][:, ::-1]
-    else:
-        dim1, dim2 = Inertia[chosenAxes]
-        xy_rows = Coords_rows[:, chosenAxes] 
-        xy_cols = Coords_cols[:, chosenAxes]
     # annotate points
     Cols_Labels = [Label_cols[c] for c in Data.columns]
     ax = Annotate(ax, rows_to_Annot, cols_to_Annot, Label_rows, Cols_Labels, xy_rows, xy_cols, col)
@@ -163,10 +158,10 @@ def Display(Coords_rows, Coords_cols, Inertia, Data, rows_to_Annot, cols_to_Anno
     
     # label factor axis
     if show_inertia: # show percentage of inertia
-        #pl.xlabel("Dim %d (%.2f %%)"%(chosenAxes[0]+1, 100*dim1/np.sum(Inertia)), fontsize = 14)
-        #pl.ylabel("Dim %d (%.2f %%)"%(chosenAxes[1]+1, 100*dim2/np.sum(Inertia)), fontsize = 14)
-        pl.xlabel("Dim %d"%(chosenAxes[0]+1,), fontsize = 14)
-        pl.ylabel("Dim %d"%(chosenAxes[1]+1,), fontsize = 14)
+        pl.xlabel("Dim %d (%.2f %%)"%(chosenAxes[0]+1, 100*dim1/np.sum(Inertia)), fontsize = 14)
+        pl.ylabel("Dim %d (%.2f %%)"%(chosenAxes[1]+1, 100*dim2/np.sum(Inertia)), fontsize = 14)
+        #pl.xlabel("Dim %d"%(chosenAxes[0]+1,), fontsize = 14)
+        #pl.ylabel("Dim %d"%(chosenAxes[1]+1,), fontsize = 14)
     else:
         pl.xlabel("Dim %d"%(chosenAxes[0]+1,), fontsize = 14)
         pl.ylabel("Dim %d"%(chosenAxes[1]+1,), fontsize = 14)

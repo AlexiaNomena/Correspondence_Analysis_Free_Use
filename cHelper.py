@@ -26,11 +26,6 @@ sub = ""
 # Use "MCMCA" to perform MCM Correspondence Analysis
 method = "CA"
 
-################# How many factor dimensions to use on clustermap? #######################
-### if not given then two factor dimensions will be used 
-# cannot exceed the minimun between nr. of texts and nr. forms
-num_dim_given = 4 # Only maximum 2 for TensorCA when using parameter rescale = True
-
 ################# Is your dataset already a contingency table? Yes = True, No = False #######################
 isCont = True
 
