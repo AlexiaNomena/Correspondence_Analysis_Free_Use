@@ -56,7 +56,9 @@ Visualising the usual correspondence analysis results
 <p align="center">
   <img src="Figures/CA/CA_text_Vb.png" width="800">
 </p>
-
+<p align="center">
+  <img src="Figures/CA/summary.png" width="800">
+</p>
 ### Association clustermap
 Visualising the strenght of the association between the variables 
 
