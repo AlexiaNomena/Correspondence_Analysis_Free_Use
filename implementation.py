@@ -97,7 +97,7 @@ if plot_contingency:
     pdf2 = PdfPages("Figures/"+"Contingency"+col_val+row_val+".pdf")
 
 if plot_data_table:
-    pdf3 = PdfPages("Figures/"+"Data_t"+col_val+row_val+".pdf")
+    pdf3 = PdfPages("Figures/"+"Data_"+col_val+row_val+".pdf")
     
 # Data.columns gives all the texts existing in the columns of the dataset 
 AllCols = Data.columns
