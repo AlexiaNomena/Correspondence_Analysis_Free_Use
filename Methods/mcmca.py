@@ -108,7 +108,7 @@ def factors(Data, row_vals, col_vals, missing, isCont):
 def MCMCA(Data, row_vals, col_vals, rows_to_Annot, cols_to_Annot, Label_rows, Label_cols, cols_dating = None, table = True, 
           markers = [("o", 50), ("o",50)], col = ["grey", "red"], figtitle="None", outliers = (True, True),
            missing = (False, False), reverse_axis = False, p_val = 0.01, isCont = False, ColName = None,
-                                     RowName = None):    
+                                     RowName = None, dtp = ("int", "str")):    
     '''
     @brief: perform correspondence analysis and return summarry table and figure
     @params Data          : panda dataframe (without missing elements or NANs)
@@ -163,7 +163,7 @@ def MCMCA(Data, row_vals, col_vals, rows_to_Annot, cols_to_Annot, Label_rows, La
             Inertia = Fact["Inertia"].copy()
             
             if rows_to_Annot is not None:
-                if set.intersection(set(np.array(row_vals[rows_to_Annot], dtype = int)), set(np.array(Cont.index, dtype = int))) != set(np.array(row_vals[rows_to_Annot], dtype = int)) or len(row_vals) > len(Cont.index):
+                if set.intersection(set(np.array(row_vals[rows_to_Annot], dtype = dtp[0])), set(np.array(Cont.index, dtype = dtp[0]))) != set(np.array(row_vals[rows_to_Annot], dtype = dtp[0])) or len(row_vals) > len(Cont.index):
                     annot_rows = np.array(row_vals[rows_to_Annot])
                     rows_to_Annot = []
                     for s in range(len(annot_rows)):
