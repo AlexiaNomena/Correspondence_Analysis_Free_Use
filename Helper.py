@@ -36,7 +36,7 @@ row_val = "Vb"     # appears in figure name
 col_val = "_text_" # appears in figure name
 ColName = "Texts" # appears in figure title
 RowName = rows_labels[row_val] # appears in figure title
-dtp = ("int", "str")
+dtp = ("int", "str") # datatype
 
 
 #################### Would you like to study a particular subgroup of categories of the row variables? Yes = True, No = False #################################
