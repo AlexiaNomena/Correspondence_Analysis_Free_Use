@@ -47,7 +47,7 @@ subset_rows = False
 rows_to_study = [322, 256, 378, 690, 999, 390, 3849, 127, 103, 114]  ### list will only be used if subset_rows = True (each one must be present in at least one of the text)
 
 ################# Would you like to annotate a specific row category on the CA or MCMCA figures #######
-annot_rows = [322, 256, 127] # example 322 and 256 for verbs, add more if needed
+annot_rows = [322, 256] # example 322 and 256 for verbs, add more if needed
 
 ################## Would you like to get the contingency table? #######################################
 plot_contingency = True  # Figures/

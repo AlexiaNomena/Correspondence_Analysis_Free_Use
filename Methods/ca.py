@@ -261,11 +261,10 @@ def CA(Data, row_vals, col_vals, rows_to_Annot, cols_to_Annot, Label_rows, Label
                 if rows_to_Annot is not None:
                     if set.intersection(set(np.array(row_vals[rows_to_Annot], dtype = int)), set(np.array(Cont.index, dtype = int))) != set(np.array(row_vals[rows_to_Annot], dtype = int)) or len(row_vals) > len(Cont.index):
                         print("reset")
-                        pdb.set_trace()
-                        annot_rows = Cont.index
+                        annot_rows = np.array(row_vals[rows_to_Annot])
                         rows_to_Annot = []
                         for s in range(len(annot_rows)):
-                            ind = np.where(row_vals == annot_rows[s])[0]
+                            ind = np.where(Cont.index == annot_rows[s])[0]
                             if len(ind) >= 1: # row should appear only one time
                                 rows_to_Annot = rows_to_Annot + list(ind)
                             
