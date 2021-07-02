@@ -163,7 +163,7 @@ def MCMCA(Data, row_vals, col_vals, rows_to_Annot, cols_to_Annot, Label_rows, La
             Inertia = Fact["Inertia"].copy()
             
             if rows_to_Annot is not None:
-                if len(rows_to_Annot)>len(Cont.index): 
+                if set.intersection(set(np.array(row_vals[rows_to_Annot], dtype = int)), set(np.array(Cont.index, dtype = int))) != set(np.array(row_vals[rows_to_Annot], dtype = int)) or len(row_vals) > len(Cont.index):
                     annot_rows = Cont.index
                     rows_to_Annot = []
                     for s in range(len(annot_rows)):
@@ -194,7 +194,7 @@ def MCMCA(Data, row_vals, col_vals, rows_to_Annot, cols_to_Annot, Label_rows, La
         
             
                 
-            return {"rows_in_fig":xy_rows, "cols_in_fig":xy_cols, "Full_results":Fact, "chosenAxes":np.array([0, 1]), "sorted_Axes":None}, fig, fig2
+            return {"rows_in_fig":xy_rows, "cols_in_fig":xy_cols, "Full_results":Fact, "chosenAxes":np.array([0, 1]), "sorted_Axes":None}, fig, fig2, Cont
     
 
         

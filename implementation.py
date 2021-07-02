@@ -105,8 +105,7 @@ AllCols = Data.columns
    
 # in case one only study a subset of the code
 if subset_rows:
-    AllRows = np.array(rows_to_study)
-
+    AllRows = np.array(list(set.intersection(set(rows_to_study), set(AllRows))))
 
 ### annotate a specific form on the plot #####
 try:
@@ -115,6 +114,7 @@ try:
         ind = np.where(AllRows == annot_rows[s])[0]
         if len(ind) >= 1: # row should appear only one time
             rows_annot = rows_annot + list(ind)
+            
 except:
     rows_annot = None
 
@@ -127,23 +127,23 @@ except:
 
 figtitle = ColName +" vs. " + RowName    
 ######### Analysis ##########        
-Perform_CA, fig, contfig = method(Data, 
-                row_vals = AllRows,   # List of row items to consider in the analysis 
-                col_vals = AllCols,      # List of column items to consider in the analysis (choose from texts_list)
-                rows_to_Annot = rows_annot,      # indexes of the form items to annotate, if None then no annotation (None if none), np.arange(0,len(AllRows),  dtype=int) if all
-                cols_to_Annot = np.arange(0,len(AllCols),  dtype=int), # indexes of the column items to annotate (None if none)
-                Label_rows = rows_annot_labs,  # list of labels respectivelly corresponding to the row items (None if none)
-                Label_cols = columns_labels,     # dictionary of labels respectivelly corresponding to the column items that (None if none)
-                cols_dating = columns_dating,    # dictionary of dates respectivelly corresponding to the column items (None if none)
-                table = True,                 # Include summary table in the figure or not = True or False
-                markers =[(".",10), ("+",30)],# pyplot markertypes, markersize: [(marker for the form items, size), (marker for the text items, size)] 
-                col = ["grey", "red"],        # pyplot colortypes : [color for the form items, color for the text items]                  
-                figtitle = figtitle, # The title of the figure in the analysis
-                outliers = (True, True), # to show (True) or not to show (False) the outliers of (row values, col values)
-                p_val = p_value, # default is 0.01
-                isCont = isCont,          # input boolean parameter for: Is your data already a contingency table? 
-                ColName = ColName,
-                RowName = RowName)
+Perform_CA, fig, contfig, ContdF = method(Data, 
+                                    row_vals = AllRows,   # List of row items to consider in the analysis 
+                                    col_vals = AllCols,      # List of column items to consider in the analysis (choose from texts_list)
+                                    rows_to_Annot = rows_annot,      # of the form items to annotate, if None then no annotation (None if none), np.arange(0,len(AllRows),  dtype=int) if all
+                                    cols_to_Annot = np.arange(0,len(AllCols),  dtype=int), # indexes of the column items to annotate (None if none)
+                                    Label_rows = rows_annot_labs,  # list of labels respectivelly corresponding to the row items (None if none)
+                                    Label_cols = columns_labels,     # dictionary of labels respectivelly corresponding to the column items that (None if none)
+                                    cols_dating = columns_dating,    # dictionary of dates respectivelly corresponding to the column items (None if none)
+                                    table = True,                 # Include summary table in the figure or not = True or False
+                                    markers =[(".",10), ("+",30)],# pyplot markertypes, markersize: [(marker for the form items, size), (marker for the text items, size)] 
+                                    col = ["grey", "red"],        # pyplot colortypes : [color for the form items, color for the text items]                  
+                                    figtitle = figtitle, # The title of the figure in the analysis
+                                    outliers = (True, True), # to show (True) or not to show (False) the outliers of (row values, col values)
+                                    p_val = p_value, # default is 0.01
+                                    isCont = isCont,          # input boolean parameter for: Is your data already a contingency table? 
+                                    ColName = ColName,
+                                    RowName = RowName)
 
 
 #save contingency table
@@ -166,8 +166,8 @@ if (Perform_CA is not None)*(fig is not None): # means that the analysis was suc
     # Plot clustermaps to see the correspondence within rows and columns
     ClustFigs = Cluster_maps(Perform_CA, 
                                    rows_labels[row_val], 
-                                   Label_rows = rows_annot_labs, 
-                                   Label_cols = [columns_labels[c] for c in Data.columns], 
+                                   Label_rows = np.array(ContdF.index, dtype = int), 
+                                   Label_cols = [columns_labels[c] for c in ContdF.columns], 
                                    standard = standard,
                                    num_dim = num_dim, 
                                    specific_rows_cols = specific_rows_cols, 

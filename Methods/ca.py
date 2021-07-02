@@ -222,7 +222,7 @@ def CA(Data, row_vals, col_vals, rows_to_Annot, cols_to_Annot, Label_rows, Label
     '''
     if (len(row_vals) == 1) + (len(col_vals) == 1) != 0:
         print("Data is one-dimensional, analysis cannot be done")
-        return None, None, None
+        return None, None, None, None
     
     else:
     
@@ -231,7 +231,7 @@ def CA(Data, row_vals, col_vals, rows_to_Annot, cols_to_Annot, Label_rows, Label
         
         if Fact is None:
             print("Data might not be feasible")
-            return None, None, None
+            return None, None, None, None
 
         else:
             # Simple summary, contingency, and p_values
@@ -251,7 +251,7 @@ def CA(Data, row_vals, col_vals, rows_to_Annot, cols_to_Annot, Label_rows, Label
                 print("Requested p_value level is not achieved, thus no result is plotted")
                 print("###################################################################")
                 
-                return None, None, fig2
+                return None, None, fig2, None
             
             else:
                 Coords_rows = Fact["Factors_rows"].copy()
@@ -259,11 +259,13 @@ def CA(Data, row_vals, col_vals, rows_to_Annot, cols_to_Annot, Label_rows, Label
                 Inertia = Fact["Inertia"].copy()
                 
                 if rows_to_Annot is not None:
-                    if len(rows_to_Annot)>len(Cont.index): 
-                        annot_rows = ContDataFrame.index
+                    if set.intersection(set(np.array(row_vals[rows_to_Annot], dtype = int)), set(np.array(Cont.index, dtype = int))) != set(np.array(row_vals[rows_to_Annot], dtype = int)) or len(row_vals) > len(Cont.index):
+                        print("reset")
+                        pdb.set_trace()
+                        annot_rows = Cont.index
                         rows_to_Annot = []
                         for s in range(len(annot_rows)):
-                            ind = np.where(Label_rows == annot_rows[s])[0]
+                            ind = np.where(row_vals == annot_rows[s])[0]
                             if len(ind) >= 1: # row should appear only one time
                                 rows_to_Annot = rows_to_Annot + list(ind)
                             
@@ -295,10 +297,7 @@ def CA(Data, row_vals, col_vals, rows_to_Annot, cols_to_Annot, Label_rows, Label
                     #ax2.set_aspect("equal")
             
                 
-                
-                            
-                
-                return {"rows_in_fig":xy_rows, "cols_in_fig":xy_cols, "chosenAxes":chosenAxes, "sorted_Axes":sortedAxes, "Full_results":Fact}, fig, fig2
+                return {"rows_in_fig":xy_rows, "cols_in_fig":xy_cols, "chosenAxes":chosenAxes, "sorted_Axes":sortedAxes, "Full_results":Fact}, fig, fig2, Cont
            
 
         
