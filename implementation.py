@@ -142,6 +142,7 @@ Perform_CA, fig, contfig, ContdF = method(Data,
                                     outliers = (True, True), # to show (True) or not to show (False) the outliers of (row values, col values)
                                     p_val = p_value, # default is 0.01
                                     isCont = isCont,          # input boolean parameter for: Is your data already a contingency table? 
+                                    dtp = dtp, # tuple datatype
                                     ColName = ColName,
                                     RowName = RowName)
 
