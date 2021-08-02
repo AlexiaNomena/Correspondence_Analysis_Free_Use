@@ -129,7 +129,7 @@ def Annotate(ax, rows_to_Annot, cols_to_Annot, Label_rows, Label_cols, xy_rows, 
 
 
 def Display(Coords_rows, Coords_cols, Inertia, Data, rows_to_Annot, cols_to_Annot, Label_rows, Label_cols, 
-            markers, col, figtitle, outliers, chosenAxes = np.array([0, 1]), show_inertia = True, reverse_axis = False, ColName = None,
+            markers, col, figtitle, outliers, dtp, chosenAxes = np.array([0, 1]), show_inertia = True, reverse_axis = False, ColName = None,
                                      RowName = None):  
     """
     @brief: display results
@@ -148,9 +148,26 @@ def Display(Coords_rows, Coords_cols, Inertia, Data, rows_to_Annot, cols_to_Anno
     xy_cols = Coords_cols[:, chosenAxes]
     
     # annotate points
-    Rows_Labels = [Label_rows[c] for c in Data.index]
-    Cols_Labels = [Label_cols[c] for c in Data.columns]
-    ax = Annotate(ax, rows_to_Annot, cols_to_Annot, Rows_Labels, Cols_Labels, xy_rows, xy_cols, col)
+    Rows_Labels = np.array([Label_rows[c] for c in Data.index], dtype = dtp[0])
+    Cols_Labels = np.array([Label_cols[c] for c in Data.columns], dtype = dtp[1])
+    
+    if rows_to_Annot is not None:
+        annot_rows = rows_to_Annot
+        rows_to_Annot_index = []
+        for s in range(len(annot_rows)):
+            ind = np.where(Data.index == annot_rows[s])[0]
+            if len(ind) >= 1: # should appear only one time
+                rows_to_Annot_index = rows_to_Annot_index + list(ind)
+                
+    if cols_to_Annot is not None:
+        annot_cols= cols_to_Annot
+        cols_to_Annot_index = []
+        for s in range(len(annot_cols)):
+            ind = np.where(Data.columns == annot_cols[s])[0]
+            if len(ind) >= 1: #  should appear only one time
+                cols_to_Annot_index = cols_to_Annot_index + list(ind)
+    
+    ax = Annotate(ax, rows_to_Annot_index, cols_to_Annot_index, Rows_Labels, Cols_Labels, xy_rows, xy_cols, col)
 
     ax.scatter(xy_rows[:, 0], xy_rows[:, 1], marker = markers[0][0], color = col[0], s = markers[0][1], label= RowName)
     ax.scatter(xy_cols[:, 0], xy_cols[:, 1], marker = markers[1][0], color = col[1], s = markers[1][1], label= ColName)

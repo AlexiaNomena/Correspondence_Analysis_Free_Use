@@ -168,8 +168,8 @@ if (Perform_CA is not None)*(fig is not None): # means that the analysis was suc
     # Plot clustermaps to see the correspondence within rows and columns
     ClustFigs = Cluster_maps(Perform_CA, 
                                    rows_labels[row_val], 
-                                   Label_rows = np.array(ContdF.index, dtype = int), 
-                                   Label_cols = [columns_labels[c] for c in ContdF.columns], 
+                                   Label_rows = np.array(ContdF.index, dtype = dtp[0]), 
+                                   Label_cols = np.array([columns_labels[c] for c in ContdF.columns], dtype=dtp[1]), 
                                    standard = standard,
                                    num_dim = num_dim, 
                                    specific_rows_cols = specific_rows_cols, 

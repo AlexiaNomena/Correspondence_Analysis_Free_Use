@@ -260,7 +260,7 @@ def CA(Data, row_vals, col_vals, rows_to_Annot, cols_to_Annot, Label_rows, Label
             
                             
                 fig, xy_rows, xy_cols = Display(Coords_rows, Coords_cols, Inertia, Cont, rows_to_Annot, cols_to_Annot, Label_rows, Label_cols, 
-                                  markers, col, figtitle, outliers,
+                                  markers, col, figtitle, outliers, dtp=dtp,
                                   chosenAxes = chosenAxes, 
                                   show_inertia = True, reverse_axis = reverse_axis, ColName = ColName,
                                      RowName = RowName)

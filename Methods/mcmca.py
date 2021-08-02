@@ -172,8 +172,8 @@ def MCMCA(Data, row_vals, col_vals, rows_to_Annot, cols_to_Annot, Label_rows, La
             """
             
             fig, xy_rows, xy_cols = Display(Coords_rows, Coords_cols, Inertia, Cont, rows_to_Annot, cols_to_Annot, Label_rows, Label_cols, 
-                                  markers, col, figtitle, outliers,
-                                  chosenAxes = np.array([0, 1]), 
+                                  markers, col, figtitle, outliers, dtp=dtp,
+                                  chosenAxes = np.array([0, 1]),
                                   show_inertia = False, ColName = ColName,
                                      RowName = RowName)
                         
