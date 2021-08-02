@@ -20,7 +20,7 @@ if not isCont:
     @params form_labels:      dictionary for the labels of te forms:                 {form:string, ....}
     '''
     AllRows = Row_Vals(Data)  # take all row elements of the dataset / if dataset is not a contigency dataframe
-    rows_annot_labs = Row_Vals(Data)
+    rows_annot_labs = {row:row for row in Row_Vals(Data)}
 else:
     ### You can directly enter your data as a contingency table, howvever you need to check if the row/columns category names are consistent ###
     try:
@@ -44,7 +44,7 @@ else:
         annot_rows = row_list
     
     AllRows = np.array(row_list)
-    rows_annot_labs = row_list
+    rows_annot_labs = {row:row for row in row_list}
 
     
 # Throw analysis figs in one pdf, specify the location and name of figure, the name of the row variabls is appended to it to differentiate the filename
@@ -109,14 +109,15 @@ if subset_rows:
 
 ### annotate a specific form on the plot #####
 try:
-    rows_annot = []
-    for s in range(len(annot_rows)):
-        ind = np.where(AllRows == annot_rows[s])[0]
-        if len(ind) >= 1: # row should appear only one time
-            rows_annot = rows_annot + list(ind)
+    print(annot_rows)
+    #rows_annot = []
+    #for s in range(len(annot_rows)):
+        #ind = np.where(AllRows == annot_rows[s])[0]
+        #if len(ind) >= 1: # row should appear only one time
+            #rows_annot = rows_annot + list(ind)
             
 except:
-    rows_annot = None
+    annot_rows = None
 
 
 try:
@@ -130,10 +131,10 @@ figtitle = ColName +" vs. " + RowName
 Perform_CA, fig, contfig, ContdF = method(Data, 
                                     row_vals = AllRows,   # List of row items to consider in the analysis 
                                     col_vals = AllCols,      # List of column items to consider in the analysis (choose from texts_list)
-                                    rows_to_Annot = rows_annot,      # of the form items to annotate, if None then no annotation (None if none), np.arange(0,len(AllRows),  dtype=int) if all
-                                    cols_to_Annot = np.arange(0,len(AllCols),  dtype=int), # indexes of the column items to annotate (None if none)
-                                    Label_rows = rows_annot_labs,  # list of labels respectivelly corresponding to the row items (None if none)
-                                    Label_cols = columns_labels,     # dictionary of labels respectivelly corresponding to the column items that (None if none)
+                                    rows_to_Annot = annot_rows,      # rows items to annotate, if None then no annotation (None if none), np.arange(0,len(AllRows),  dtype=int) if all
+                                    cols_to_Annot = AllCols, # column items to annotate (None if none)
+                                    Label_rows = rows_annot_labs,    # dictionary of respectivelly corresponding to the row items (None if none)
+                                    Label_cols = columns_labels,     # dictionary of labels respectivelly corresponding to the column items (None if none)
                                     cols_dating = columns_dating,    # dictionary of dates respectivelly corresponding to the column items (None if none)
                                     table = True,                 # Include summary table in the figure or not = True or False
                                     markers =[(".",10), ("+",30)],# pyplot markertypes, markersize: [(marker for the form items, size), (marker for the text items, size)] 

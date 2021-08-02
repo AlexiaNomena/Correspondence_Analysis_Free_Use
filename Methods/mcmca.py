@@ -161,17 +161,17 @@ def MCMCA(Data, row_vals, col_vals, rows_to_Annot, cols_to_Annot, Label_rows, La
             Coords_rows = Fact["Factors_rows"].copy()
             Coords_cols = Fact["Factors_columns"].copy()
             Inertia = Fact["Inertia"].copy()
-            
+            """
             if rows_to_Annot is not None:
-                if set.intersection(set(np.array(row_vals[rows_to_Annot], dtype = dtp[0])), set(np.array(Cont.index, dtype = dtp[0]))) != set(np.array(row_vals[rows_to_Annot], dtype = dtp[0])) or len(row_vals) > len(Cont.index):
-                    annot_rows = np.array(row_vals[rows_to_Annot])
-                    rows_to_Annot = []
-                    for s in range(len(annot_rows)):
-                        ind = np.where(Cont.index == annot_rows[s])[0]
-                        if len(ind) >= 1: # row should appear only one time
-                            rows_to_Annot = rows_to_Annot + list(ind)
-                
-            fig, xy_rows, xy_cols = Display(Coords_rows, Coords_cols, Inertia, Data, rows_to_Annot, cols_to_Annot, Label_rows, Label_cols, 
+                annot_rows = rows_to_Annot
+                rows_to_Annot = []
+                for s in range(len(annot_rows)):
+                    ind = np.where(Cont.index == annot_rows[s])[0]
+                    if len(ind) >= 1: # row should appear only one time
+                        rows_to_Annot = rows_to_Annot + list(ind)
+            """
+            
+            fig, xy_rows, xy_cols = Display(Coords_rows, Coords_cols, Inertia, Cont, rows_to_Annot, cols_to_Annot, Label_rows, Label_cols, 
                                   markers, col, figtitle, outliers,
                                   chosenAxes = np.array([0, 1]), 
                                   show_inertia = False, ColName = ColName,

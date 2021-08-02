@@ -148,8 +148,9 @@ def Display(Coords_rows, Coords_cols, Inertia, Data, rows_to_Annot, cols_to_Anno
     xy_cols = Coords_cols[:, chosenAxes]
     
     # annotate points
+    Rows_Labels = [Label_rows[c] for c in Data.index]
     Cols_Labels = [Label_cols[c] for c in Data.columns]
-    ax = Annotate(ax, rows_to_Annot, cols_to_Annot, Label_rows, Cols_Labels, xy_rows, xy_cols, col)
+    ax = Annotate(ax, rows_to_Annot, cols_to_Annot, Rows_Labels, Cols_Labels, xy_rows, xy_cols, col)
 
     ax.scatter(xy_rows[:, 0], xy_rows[:, 1], marker = markers[0][0], color = col[0], s = markers[0][1], label= RowName)
     ax.scatter(xy_cols[:, 0], xy_cols[:, 1], marker = markers[1][0], color = col[1], s = markers[1][1], label= ColName)
