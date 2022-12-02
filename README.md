@@ -24,7 +24,7 @@ See official publication link [here](https://opus4.kobv.de/opus4-zib/frontdoor/i
 
 DOI: https://doi.org/10.12752/8257
 
-Licence: Creative Commons - CC BY - Namensnennung 4.0 International
+Licence: [Open Source Apache 2.0](https://www.apache.org/licenses/LICENSE-2.0)
 
 ## Code Execution
 ### Users with little to no background in python 
